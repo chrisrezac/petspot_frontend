@@ -2,16 +2,34 @@
   <div class="pets-new">
     <h1>New Pet</h1>
     <form v-on:submit.prevent="createPet()">
-      <!-- <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul> -->
-      Name: <input type="text" v-model="newPetName" />
-      Type: <input type="text" v-model="newPetType" />
-      Breed: <input type="text" v-model="newPetBreed" />
-      Birthday: <input type="text" v-model="newPetBirthday" />
-      Bio: <input type="text" v-model="newPetBio" />
-
-      <input type="submit" value="Create" />
+      <ul>
+        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" v-model="name" />
+      </div>
+      <div class="form-group">
+        <label>Type:</label>
+        <input type="text" class="form-control" v-model="animalType" />
+      </div>
+      <div class="form-group">
+        <label>Breed:</label>
+        <input type="text" class="form-control" v-model="breed" />
+      </div>
+      <div class="form-group">
+        <label>Birthday:</label>
+        <input type="text" class="form-control" v-model="birthday" />
+      </div>
+      <div class="form-group">
+        <label>Bio:</label>
+        <input type="text" class="form-control" v-model="bio" />
+      </div>
+      <div class="form-group">
+        <label>Image:</label>
+        <input type="text" class="form-control" v-model="imageUrl" />
+      </div>
+      <input type="submit" class="btn btn-primary" value="Create" />
     </form>
   </div>
 </template>
@@ -22,11 +40,12 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      newPetName: "",
-      newPetType: "",
-      newPetBreed: "",
-      newPetBirthday: "",
-      newPetBio: "",
+      name: "",
+      animalType: "",
+      breed: "",
+      birthday: "",
+      bio: "",
+      imageUrl: "",
       errors: []
     };
   },
@@ -34,11 +53,12 @@ export default {
   methods: {
     createPet: function() {
       var params = {
-        name: this.newPetName,
-        animal_type: this.newPetType,
-        breed: this.newPetBreed,
-        birthday: this.newPetBirthday,
-        bio: this.newPetBio
+        name: this.name,
+        animal_type: this.animalType,
+        breed: this.breed,
+        birthday: this.birthday,
+        bio: this.bio,
+        image_url: this.imageUrl
       };
       axios
         .post("/api/pets", params)
@@ -50,7 +70,7 @@ export default {
           console.log("pets create error", error.response);
           this.errors = error.response.data.errors;
         });
-    },
-  },
+    }
+  }
 };
 </script>

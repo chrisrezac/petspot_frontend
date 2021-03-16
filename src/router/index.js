@@ -46,15 +46,16 @@ const routes = [
     component: PetsIndex
   },
   {
+    path: "/pets/new",
+    name: "pets-new",
+    component: PetsNew
+  },
+  {
     path: "/pets/:id",
     name: "pets-show",
     component: PetsShow
   },
-  {
-    path: "/pets/new",
-    name: "pets-new",
-    component: PetsNew
-  }
+
 ];
 
 const router = new VueRouter({
