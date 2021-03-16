@@ -5,8 +5,9 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import PetsIndex from "../views/PetsIndex.vue";
-import PetsShow from "../views/PetsShow.vue";
 import PetsNew from "../views/PetsNew.vue";
+import PetsShow from "../views/PetsShow.vue";
+import PetsEdit from "../views/PetsEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -55,7 +56,11 @@ const routes = [
     name: "pets-show",
     component: PetsShow
   },
-
+  {
+    path: "/pets/:id/edit",
+    name: "pets-edit",
+    component: PetsEdit
+  }
 ];
 
 const router = new VueRouter({

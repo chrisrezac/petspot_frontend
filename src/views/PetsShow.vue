@@ -7,7 +7,11 @@
     <p>Breed: {{ pet.breed }}</p>
     <p>Birthday: {{ pet.birthday }}</p>
     <p>Bio: {{ pet.bio }}</p>
-    <router-link to="/pets">Back to All Pets</router-link>
+    <router-link to="/pets" tag="button">Go Back</router-link>
+    |
+    <router-link :to="`/pets/${pet.id}/edit`" tag="button">Edit</router-link>
+    |
+    <button v-on:click="destroyPet(currentPet)">Delete Pet</button>
   </div>
 </template>
 
@@ -26,6 +30,15 @@ export default {
       this.pet = response.data;
     });
   },
-  methods: {}
+  methods: {
+    destroyPet: function() {
+      if (confirm("Are you sure you want to delete this pet?")) {
+        axios.delete(`/api/pets/${this.pet.id}`).then(response => {
+          console.log(response.data);
+          this.$router.push("/pets");
+        });
+      }
+    }
+  }
 };
 </script>

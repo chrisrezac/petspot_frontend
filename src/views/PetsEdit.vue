@@ -1,0 +1,75 @@
+<template>
+  <div class="pets-edit">
+    <form v-on:submit.prevent="updatePet()">
+      <h1>Edit Pet</h1>
+      <ul>
+        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" v-model="name" />
+      </div>
+      <div class="form-group">
+        <label>Type:</label>
+        <input type="text" class="form-control" v-model="animalType" />
+      </div>
+      <div class="form-group">
+        <label>Breed:</label>
+        <input type="text" class="form-control" v-model="breed" />
+      </div>
+      <div class="form-group">
+        <label>Birthday:</label>
+        <input type="text" class="form-control" v-model="birthday" />
+      </div>
+      <div class="form-group">
+        <label>Bio:</label>
+        <input type="text" class="form-control" v-model="bio" />
+      </div>
+      <div class="form-group">
+        <label>Image:</label>
+        <input type="text" class="form-control" v-model="imageUrl" />
+      </div>
+      <input type="submit" class="btn btn-primary" value="Update" />
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data: function() {
+    return {
+      pet: {},
+      errors: []
+    };
+  },
+  created: function() {
+    axios.get(`/api/pets/${this.$route.params.id}`).then(response => {
+      this.pet = response.data;
+      console.log(this.pet);
+    });
+  },
+  methods: {
+    updatePet: function() {
+      var params = {
+        name: this.name,
+        animal_type: this.animalType,
+        breed: this.breed,
+        birthday: this.birthday,
+        bio: this.bio,
+        image_url: this.imageUrl
+      };
+      axios
+        .patch(`/api/pets/${this.pet.id}`, params)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push(`/pets/${this.pet.id}`);
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
+    }
+  }
+};
+</script>

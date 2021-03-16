@@ -6,7 +6,9 @@
       <p>Name: {{ pet.name }}</p>
       <p>Type: {{ pet.animal_type }}</p>
       <p>Breed: {{ pet.breed }}</p>
-      <router-link v-bind:to="`/pets/${pet.id}`">View Pet</router-link>
+      <router-link v-bind:to="`/pets/${pet.id}`" tag="button"
+        >View Pet</router-link
+      >
     </div>
   </div>
 </template>
