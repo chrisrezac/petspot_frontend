@@ -2,13 +2,13 @@
   <div class="pets-index">
     <h1>All Pets</h1>
     <div v-for="pet in pets" v-bind:key="pet.name">
-      <img v-bind:src="pet.image_url" v-bind:alt="pet.name" />
+      <router-link :to="`/pets/${pet.id}`"
+        ><img v-bind:src="pet.image_url"
+      /></router-link>
       <p>Name: {{ pet.name }}</p>
       <p>Type: {{ pet.animal_type }}</p>
       <p>Breed: {{ pet.breed }}</p>
-      <router-link v-bind:to="`/pets/${pet.id}`" tag="button"
-        >View Pet</router-link
-      >
+      <br />
     </div>
   </div>
 </template>
