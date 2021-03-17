@@ -10,6 +10,7 @@ import PetsIndex from "../views/PetsIndex.vue";
 import PetsNew from "../views/PetsNew.vue";
 import PetsShow from "../views/PetsShow.vue";
 import PetsEdit from "../views/PetsEdit.vue";
+import PostsIndex from "../views/PostsIndex";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
 import PostsEdit from "../views/PostsEdit.vue";
@@ -75,6 +76,11 @@ const routes = [
     path: "/pets/:id/edit",
     name: "pets-edit",
     component: PetsEdit
+  },
+  {
+    path: "/posts",
+    name: "posts-index",
+    component: PostsIndex
   },
   {
     path: "/posts/new",

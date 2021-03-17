@@ -12,6 +12,7 @@
     |
     <button v-on:click="destroyPet(currentPet)">Delete Pet</button>
     |
+
     <!-- come back to figure out why this wont work :/ -->
     <!-- <router-link :to="`/posts/${pet.post.id}`" tag="button"
       >View Posts</router-link

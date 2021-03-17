@@ -11,13 +11,14 @@
     <br />
     <br />
     <!-- use interpolation below -->
-    <h2>TheDoodChris' Pets</h2>
+    <h2>{{ `${user.username}` + "'s" + " " + "Pets" }}</h2>
     <div v-for="pet in user.pets" v-bind:key="pet.id">
+      <h3>{{ pet.name }}</h3>
       <router-link :to="`/pets/${pet.id}`"
         ><img v-bind:src="pet.image_url"
       /></router-link>
-      <p>{{ pet.name }}</p>
     </div>
+    <router-link :to="`/pets/new`" tag="button">Create New Pet</router-link>
   </div>
 </template>
 

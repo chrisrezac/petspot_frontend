@@ -1,7 +1,7 @@
 <template>
   <div class="pets-index">
     <h1>All Pets</h1>
-    <div v-for="pet in pets" v-bind:key="pet.name">
+    <div v-for="pet in pets" v-bind:key="pet.id">
       <router-link :to="`/pets/${pet.id}`"
         ><img v-bind:src="pet.image_url"
       /></router-link>
