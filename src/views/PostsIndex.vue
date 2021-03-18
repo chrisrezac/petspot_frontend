@@ -7,8 +7,6 @@
       <router-link :to="`/posts/${post.id}`"
         ><img v-bind:src="post.image_url"
       /></router-link>
-      <p>{{ post.body }}</p>
-      <br />
     </div>
   </div>
 </template>
