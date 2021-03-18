@@ -1,25 +1,28 @@
 <template>
   <div class="pets-index">
+    <div>Search: <input type="text" v-model="name" /></div>
     <h1>All Pets</h1>
-    <div v-for="pet in pets" v-bind:key="pet.id">
+    <div v-for="pet in filterBy(pets, name)" v-bind:key="pet.id">
+      <h2>{{ pet.name }}</h2>
       <router-link :to="`/pets/${pet.id}`"
         ><img v-bind:src="pet.image_url"
       /></router-link>
-      <p>Name: {{ pet.name }}</p>
       <p>Type: {{ pet.animal_type }}</p>
       <p>Breed: {{ pet.breed }}</p>
-      <br />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
-      pets: []
+      pets: [],
+      name: ""
     };
   },
   created: function() {

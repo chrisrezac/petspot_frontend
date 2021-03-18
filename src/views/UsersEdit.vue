@@ -17,6 +17,10 @@
         <label>Password:</label>
         <input type="text" class="form-control" v-model="password" />
       </div>
+      <div class="form-group">
+        <label>ImageUrl:</label>
+        <input type="text" class="form-control" v-model="imageUrl" />
+      </div>
       <input type="submit" class="btn btn-primary" value="Update" />
     </form>
   </div>
@@ -43,7 +47,8 @@ export default {
       var params = {
         email: this.email,
         username: this.username,
-        password: this.password
+        password: this.password,
+        image_url: this.imageUrl
       };
       axios
         .patch(`/api/users/${this.user.id}`, params)

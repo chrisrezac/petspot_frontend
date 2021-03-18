@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
-      |
       <router-link to="/signup">Sign Up</router-link>
       |
       <router-link to="/login">Login</router-link>
@@ -10,7 +8,10 @@
       <router-link to="/logout">Logout</router-link>
       |
       <router-link to="/pets">All Pets</router-link>
+      |
+      <router-link to="/posts">All Posts</router-link>
     </div>
+
     <router-view />
   </div>
 </template>
@@ -42,3 +43,13 @@ img {
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  methods: {
+    loggedIn: function() {
+      return localStorage.jwt;
+    },
+  },
+};
+</script>

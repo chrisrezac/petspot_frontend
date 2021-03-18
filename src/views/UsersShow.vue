@@ -10,7 +10,6 @@
     <button v-on:click="destroyUser(currentUser)">Delete User</button>
     <br />
     <br />
-    <!-- use interpolation below -->
     <h2>{{ `${user.username}` + "'s" + " " + "Pets" }}</h2>
     <div v-for="pet in user.pets" v-bind:key="pet.id">
       <h3>{{ pet.name }}</h3>

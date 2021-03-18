@@ -97,7 +97,6 @@ const routes = [
     name: "posts-edit",
     component: PostsEdit
   }
-
 ];
 
 const router = new VueRouter({

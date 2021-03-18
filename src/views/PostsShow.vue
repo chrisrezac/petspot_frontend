@@ -2,6 +2,7 @@
   <div class="posts-show">
     <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image_url" v-bind:alt="post.id" />
+
     <p>{{ post.body }}</p>
     <router-link to="/posts" tag="button">Go Back to Pets</router-link>
     |
