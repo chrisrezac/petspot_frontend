@@ -5,7 +5,7 @@
     <div v-for="post in filterBy(posts, pet)" v-bind:key="post.id">
       <h2>{{ post.title }}</h2>
       <router-link :to="`/posts/${post.id}`"
-        ><img v-bind:src="post.image_url"
+        ><img v-bind:src="post.image_url" width="500" height="500"
       /></router-link>
     </div>
   </div>
