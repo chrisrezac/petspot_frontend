@@ -1,6 +1,6 @@
 <template>
   <div class="pets-show">
-    <h2>{{ pet.name }}</h2>
+    <h1>{{ pet.name }}</h1>
     <img v-bind:src="pet.image_url" v-bind:alt="pet.name" />
     <p>Type: {{ pet.animal_type }}</p>
     <p>Breed: {{ pet.breed }}</p>
@@ -18,7 +18,7 @@
     </button>
 
     <div v-for="post in pet.posts" v-bind:key="post.id">
-      <p>{{ post.title }}</p>
+      <h2>{{ post.title }}</h2>
 
       <router-link :to="`/posts/${post.id}`" tag="button"
         ><img v-bind:src="post.image_url"

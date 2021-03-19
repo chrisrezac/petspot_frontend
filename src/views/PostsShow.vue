@@ -1,19 +1,34 @@
 <template>
   <div class="posts-show">
     <h2>{{ post.title }}</h2>
-    <img v-bind:src="post.image_url" v-bind:alt="post.id" />
+
+    <h3>by</h3>
+    <h2>{{ `${post.pet.name}` }}</h2>
+    <router-link :to="`/pets/${post.pet.id}`" tag="button"
+      ><img v-bind:src="post.pet.image_url" width="40" height="40"
+    /></router-link>
+    <img
+      v-bind:src="post.image_url"
+      v-bind:alt="post.id"
+      width="500"
+      height="500"
+    />
 
     <p>{{ post.body }}</p>
+
     <router-link to="/posts" tag="button">Go Back to Pets</router-link>
     |
     <router-link :to="`/posts/${post.id}/edit`" tag="button">Edit</router-link>
     |
     <button v-on:click="destroyPost(currentPost)">Delete Post</button>
-    |
 
     <div v-for="comment in post.comments" v-bind:key="comment.id">
-      Comment: {{ comment.body }} <br /><br />
-      Commenter: {{ comment.user.username }}
+      <br />
+
+      <router-link :to="`/users/${comment.user.id}`" tag="button"
+        ><img v-bind:src="comment.user.image_url" width="40" height="40"
+      /></router-link>
+      {{ comment.user.username }}: {{ comment.body }}
     </div>
 
     <div class="comments-new">
@@ -29,10 +44,6 @@
         <input type="submit" class="btn btn-primary" value="Create" />
       </form>
     </div>
-
-    <router-link :to="`/pets/${post.pet.id}`" tag="button"
-      >View Pet</router-link
-    >
   </div>
 </template>
 
@@ -74,7 +85,8 @@ export default {
         .post("/api/comments", params)
         .then(response => {
           console.log("comments create", response);
-          this.$router.push("/comments");
+          this.post.comments.push(response.data);
+          console.log(this.post.comments);
         })
         .catch(error => {
           console.log("comments create error", error.response);
