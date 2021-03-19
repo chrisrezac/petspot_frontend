@@ -21,7 +21,7 @@
         <label>Pet_ID:</label>
         <input type="text" class="form-control" v-model="pet_id" />
       </div>
-       <input type="submit" class="btn btn-primary" value="Create" />
+      <input type="submit" class="btn btn-primary" value="Create" />
     </form>
   </div>
 </template>

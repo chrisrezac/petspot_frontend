@@ -5,9 +5,16 @@
     <br />
     <router-link to="/pets" tag="button">Go Back to Pets</router-link>
     |
-    <router-link :to="`/users/${user.id}/edit`" tag="button">Edit</router-link>
+    <router-link
+      v-if="isCurrentUser()"
+      :to="`/users/${user.id}/edit`"
+      tag="button"
+      >Edit</router-link
+    >
     |
-    <button v-on:click="destroyUser(currentUser)">Delete User</button>
+    <button v-if="isCurrentUser()" v-on:click="destroyUser(currentUser)">
+      Delete User
+    </button>
     <br />
     <br />
     <h2>{{ `${user.username}` + "'s" + " " + "Pets" }}</h2>
@@ -17,7 +24,9 @@
         ><img v-bind:src="pet.image_url"
       /></router-link>
     </div>
-    <router-link :to="`/pets/new`" tag="button">Create New Pet</router-link>
+    <router-link v-if="isCurrentUser()" :to="`/pets/new`" tag="button"
+      >Create New Pet</router-link
+    >
   </div>
 </template>
 
@@ -44,6 +53,13 @@ export default {
           console.log(response.data);
           this.$router.push("/users");
         });
+      }
+    },
+    isCurrentUser: function() {
+      if (this.$parent.getUserId() == this.user.id) {
+        return true;
+      } else {
+        return false;
       }
     }
   }

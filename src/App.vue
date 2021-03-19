@@ -54,13 +54,6 @@ export default {
     },
     getUserId: function() {
       return localStorage.getItem("userId");
-    },
-    isMyPet: function() {
-      if (this.getUserId() == this.pet.user.id) {
-        return true;
-      } else {
-        return false;
-      }
     }
   }
 };

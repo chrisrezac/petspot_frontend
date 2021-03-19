@@ -9,9 +9,13 @@
 
     <router-link to="/pets" tag="button">Go Back to Pets</router-link>
     |
-    <router-link :to="`/pets/${pet.id}/edit`" tag="button">Edit</router-link>
+    <router-link v-if="isMyPet()" :to="`/pets/${pet.id}/edit`" tag="button"
+      >Edit</router-link
+    >
     |
-    <button v-on:click="destroyPet(currentPet)">Delete Pet</button>
+    <button v-if="isMyPet()" v-on:click="destroyPet(currentPet)">
+      Delete Pet
+    </button>
 
     <div v-for="post in pet.posts" v-bind:key="post.id">
       <p>{{ post.title }}</p>
@@ -21,7 +25,7 @@
       /></router-link>
     </div>
 
-    <div v-if="$parent.isMyPet()" class="posts-new">
+    <div v-if="isMyPet()" class="posts-new">
       <h1>New Post</h1>
       <form v-on:submit.prevent="createPost()">
         <ul>
@@ -96,6 +100,13 @@ export default {
           console.log("posts create error", error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    isMyPet: function() {
+      if (this.$parent.getUserId() == this.pet.user.id) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };

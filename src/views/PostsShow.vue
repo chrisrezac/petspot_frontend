@@ -16,6 +16,20 @@
       Commenter: {{ comment.user.username }}
     </div>
 
+    <div class="comments-new">
+      <h1>New Comment</h1>
+      <form v-on:submit.prevent="createComment()">
+        <ul>
+          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+        </ul>
+        <div class="form-group">
+          <label>Body:</label>
+          <input type="body" class="form-control" v-model="body" />
+        </div>
+        <input type="submit" class="btn btn-primary" value="Create" />
+      </form>
+    </div>
+
     <router-link :to="`/pets/${post.pet.id}`" tag="button"
       >View Pet</router-link
     >
@@ -28,6 +42,10 @@ import axios from "axios";
 export default {
   data: function() {
     return {
+      body: "",
+      post_id: "",
+      user_id: "",
+      errors: [],
       post: []
     };
   },
@@ -45,6 +63,23 @@ export default {
           this.$router.push("/posts");
         });
       }
+    },
+    createComment: function() {
+      var params = {
+        body: this.body,
+        post_id: this.post.id,
+        user_id: this.user_id
+      };
+      axios
+        .post("/api/comments", params)
+        .then(response => {
+          console.log("comments create", response);
+          this.$router.push("/comments");
+        })
+        .catch(error => {
+          console.log("comments create error", error.response);
+          this.errors = error.response.data.errors;
+        });
     }
   }
 };
