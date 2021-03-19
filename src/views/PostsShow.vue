@@ -9,10 +9,11 @@
     <router-link :to="`/posts/${post.id}/edit`" tag="button">Edit</router-link>
     |
     <button v-on:click="destroyPost(currentPost)">Delete Post</button>
+    |
 
     <div v-for="comment in post.comments" v-bind:key="comment.id">
       Comment: {{ comment.body }} <br /><br />
-      Commenter: {{ comment.username }}
+      Commenter: {{ comment.user.username }}
     </div>
 
     <router-link :to="`/pets/${post.pet.id}`" tag="button"

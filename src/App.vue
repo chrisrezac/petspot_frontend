@@ -10,6 +10,8 @@
       <router-link to="/pets">All Pets</router-link>
       |
       <router-link to="/posts">All Posts</router-link>
+      |
+      <router-link :to="`/users/${getUserId()}`">My Profile</router-link>
     </div>
 
     <router-view />
@@ -48,8 +50,18 @@ img {
 export default {
   methods: {
     loggedIn: function() {
-      return localStorage.jwt;
+      return localStorage.jwt ? true : false;
     },
-  },
+    getUserId: function() {
+      return localStorage.getItem("userId");
+    },
+    isMyPet: function() {
+      if (this.getUserId() == this.pet.user.id) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 };
 </script>
