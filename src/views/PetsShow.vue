@@ -1,18 +1,23 @@
 <template>
   <div class="pets-show">
     <h1>{{ pet.name }}</h1>
-    <img v-bind:src="pet.image_url" v-bind:alt="pet.name" />
+    <img
+      v-bind:src="pet.image_url"
+      v-bind:alt="pet.name"
+      width="500"
+      height="500"
+    />
     <p>Type: {{ pet.animal_type }}</p>
     <p>Breed: {{ pet.breed }}</p>
     <p>Birthday: {{ pet.birthday }}</p>
     <p>Bio: {{ pet.bio }}</p>
 
     <router-link to="/pets" tag="button">Go Back to Pets</router-link>
-    |
+
     <router-link v-if="isMyPet()" :to="`/pets/${pet.id}/edit`" tag="button"
       >Edit</router-link
     >
-    |
+
     <button v-if="isMyPet()" v-on:click="destroyPet(currentPet)">
       Delete Pet
     </button>
@@ -21,7 +26,7 @@
       <h2>{{ post.title }}</h2>
 
       <router-link :to="`/posts/${post.id}`" tag="button"
-        ><img v-bind:src="post.image_url"
+        ><img v-bind:src="post.image_url" width="500" height="500"
       /></router-link>
     </div>
 
@@ -49,8 +54,8 @@
     <p>Owner of Pet: {{ pet.user.username }}</p>
 
     <router-link :to="`/users/${pet.user.id}`" tag="button"
-      >View User</router-link
-    >
+      ><img v-bind:src="pet.user.image_url" width="40" height="40" />
+    </router-link>
   </div>
 </template>
 
@@ -94,7 +99,8 @@ export default {
         .post("/api/posts", params)
         .then(response => {
           console.log("posts create", response);
-          this.$router.push("/posts");
+          this.pet.posts.push(response.data);
+          console.log(this.pet.posts);
         })
         .catch(error => {
           console.log("posts create error", error.response);

@@ -16,7 +16,7 @@
 
     <p>{{ post.body }}</p>
 
-    <router-link to="/posts" tag="button">Go Back to Pets</router-link>
+    <router-link to="/posts" tag="button">Go Back to All Posts</router-link>
     |
     <router-link :to="`/posts/${post.id}/edit`" tag="button">Edit</router-link>
     |
