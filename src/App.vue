@@ -5,8 +5,10 @@
       <router-link v-if="!loggedIn()" to="/login"> Login | </router-link>
       <router-link to="/logout">Logout | </router-link>
       <router-link to="/pets">All Pets | </router-link>
-      <router-link to="/posts">All Posts | </router-link>
-      <router-link :to="`/users/${getUserId()}`">My Profile</router-link>
+      <router-link to="/posts">All Posts </router-link>
+      <router-link v-if="loggedIn()" :to="`/users/${getUserId()}`"
+        >| My Profile</router-link
+      >
     </div>
 
     <router-view />

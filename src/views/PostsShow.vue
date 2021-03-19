@@ -17,10 +17,14 @@
     <p>{{ post.body }}</p>
 
     <router-link to="/posts" tag="button">Go Back to All Posts</router-link>
-    |
-    <router-link :to="`/posts/${post.id}/edit`" tag="button">Edit</router-link>
-    |
-    <button v-on:click="destroyPost(currentPost)">Delete Post</button>
+
+    <router-link v-if="isMyPet()" :to="`/posts/${post.id}/edit`" tag="button"
+      >Edit</router-link
+    >
+
+    <button v-if="isMyPet()" v-on:click="destroyPost(currentPost)">
+      Delete Post
+    </button>
 
     <div v-for="comment in post.comments" v-bind:key="comment.id">
       <br />
@@ -92,6 +96,13 @@ export default {
           console.log("comments create error", error.response);
           this.errors = error.response.data.errors;
         });
+    },
+    isMyPet: function() {
+      if (this.$parent.getUserId() == this.post.pet.id) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };
