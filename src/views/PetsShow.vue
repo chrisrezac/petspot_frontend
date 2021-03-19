@@ -9,7 +9,7 @@
     />
     <p>Type: {{ pet.animal_type }}</p>
     <p>Breed: {{ pet.breed }}</p>
-    <p>Birthday: {{ pet.birthday }}</p>
+    <p>Age: {{ relativeDate(pet.birthday) }}</p>
     <p>Bio: {{ pet.bio }}</p>
 
     <router-link to="/pets" tag="button">Go Back to Pets</router-link>
@@ -61,6 +61,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -80,6 +81,9 @@ export default {
     });
   },
   methods: {
+    relativeDate: function(date) {
+      return moment(date).fromNow("gets rid of ago");
+    },
     destroyPet: function() {
       if (confirm("Are you sure you want to delete this pet?")) {
         axios.delete(`/api/pets/${this.pet.id}`).then(response => {
