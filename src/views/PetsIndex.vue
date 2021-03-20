@@ -1,8 +1,16 @@
 <template>
   <div class="pets-index">
     <div>Search: <input type="text" v-model="filter" /></div>
+    <div>
+      <button v-on:click="sortAttribute = 'animal_type'">
+        Sort by Animal Type
+      </button>
+    </div>
     <h1>All Pets</h1>
-    <div v-for="pet in filterBy(pets, filter)" v-bind:key="pet.id">
+    <div
+      v-for="pet in orderBy(filterBy(pets, filter), sortAttribute)"
+      v-bind:key="pet.id"
+    >
       <h2>{{ pet.name }}</h2>
       <router-link :to="`/pets/${pet.id}`"
         ><img v-bind:src="pet.image_url" width="500" height="500"
@@ -20,7 +28,8 @@ export default {
   data: function() {
     return {
       pets: [],
-      filter: ""
+      filter: "",
+      sortAttribute: "animalType"
     };
   },
   created: function() {

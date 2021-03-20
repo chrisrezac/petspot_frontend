@@ -52,7 +52,6 @@
       </form>
     </div>
     <p>Owner of Pet: {{ pet.user.username }}</p>
-
     <router-link :to="`/users/${pet.user.id}`" tag="button"
       ><img v-bind:src="pet.user.image_url" width="40" height="40" />
     </router-link>

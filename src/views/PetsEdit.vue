@@ -1,7 +1,7 @@
 <template>
   <div class="pets-edit">
     <form v-on:submit.prevent="updatePet()">
-      <h1>Edit Pet</h1>
+      <h1> {{ "Edit " + `${pet.name}` }}</h1>
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
@@ -18,7 +18,7 @@
         <input type="text" class="form-control" v-model="breed" />
       </div>
       <div class="form-group">
-        <label>Birthday:</label>
+        <label>Birthdate:</label>
         <input type="text" class="form-control" v-model="birthday" />
       </div>
       <div class="form-group">
