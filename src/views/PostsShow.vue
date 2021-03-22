@@ -1,7 +1,6 @@
 <template>
   <div class="posts-show">
     <h2>{{ post.title }}</h2>
-
     <h3>by</h3>
     <h2>{{ `${post.pet.name}` }}</h2>
     <router-link :to="`/pets/${post.pet.id}`" tag="button"
@@ -15,13 +14,13 @@
     />
 
     <p>{{ post.body }}</p>
-
+    <!-- go back to PostsIndex -->
     <router-link to="/posts" tag="button">Go Back to All Posts</router-link>
-
+    <!-- edit post -->
     <router-link v-if="isMyPet()" :to="`/posts/${post.id}/edit`" tag="button"
       >Edit</router-link
     >
-
+    <!-- delete post -->
     <button v-if="isMyPet()" v-on:click="destroyPost(currentPost)">
       Delete Post
     </button>

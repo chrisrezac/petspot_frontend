@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/home">Home | </router-link>
-      <router-link v-if="!loggedIn()" to="/signup"> Sign Up |</router-link>
-      <router-link v-if="!loggedIn()" to="/login"> Login | </router-link>
+      <router-link to="/">Home | </router-link>
+      <router-link v-if="!loggedIn()" to="/signup">Sign Up | </router-link>
+      <router-link v-if="!loggedIn()" to="/login">Login | </router-link>
       <router-link v-if="loggedIn()" to="/logout">Logout | </router-link>
       <router-link to="/pets">All Pets | </router-link>
       <router-link to="/posts">All Posts </router-link>

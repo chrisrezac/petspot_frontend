@@ -20,7 +20,7 @@
         <input type="password" class="form-control" v-model="password" />
       </div>
       <div class="form-group">
-        <label>Password confirmation:</label>
+        <label>Password Confirmation:</label>
         <input
           type="password"
           class="form-control"
