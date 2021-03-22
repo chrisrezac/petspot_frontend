@@ -7,11 +7,11 @@
       </ul>
       <div class="form-group">
         <label>Title:</label>
-        <input type="text" class="form-control" v-model="title" />
+        <input type="text" class="form-control" v-model="post.title" />
       </div>
       <div class="form-group">
         <label>Body:</label>
-        <input type="text" class="form-control" v-model="body" />
+        <input type="text" class="form-control" v-model="post.body" />
       </div>
       <div class="form-group">
         <label>ImageUrl</label>
@@ -41,9 +41,9 @@ export default {
   methods: {
     updatePost: function() {
       var params = {
-        title: this.title,
-        body: this.body,
-        image_url: this.imageUrl
+        title: this.post.title,
+        body: this.post.body,
+        image_url: this.post.imageUrl
       };
       axios
         .patch(`/api/posts/${this.post.id}`, params)

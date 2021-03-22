@@ -7,11 +7,11 @@
       </ul>
       <div class="form-group">
         <label>Username:</label>
-        <input type="text" class="form-control" v-model="username" />
+        <input type="text" class="form-control" v-model="user.username" />
       </div>
       <div class="form-group">
         <label>Email:</label>
-        <input type="text" class="form-control" v-model="email" />
+        <input type="text" class="form-control" v-model="user.email" />
       </div>
       <div class="form-group">
         <label>Password:</label>
@@ -45,10 +45,10 @@ export default {
   methods: {
     updateUser: function() {
       var params = {
-        email: this.email,
-        username: this.username,
-        password: this.password,
-        image_url: this.imageUrl
+        email: this.user.email,
+        username: this.user.username,
+        password: this.user.password,
+        image_url: this.user.imageUrl
       };
       axios
         .patch(`/api/users/${this.user.id}`, params)

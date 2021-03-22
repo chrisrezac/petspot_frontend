@@ -14,6 +14,7 @@ import PostsIndex from "../views/PostsIndex";
 import PostsNew from "../views/PostsNew.vue";
 import PostsShow from "../views/PostsShow.vue";
 import PostsEdit from "../views/PostsEdit.vue";
+import CommentsEdit from "../views/CommentsEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -96,6 +97,11 @@ const routes = [
     path: "/posts/:id/edit",
     name: "posts-edit",
     component: PostsEdit
+  },
+  {
+    path: "/comments/:id/edit",
+    name: "comments-edit",
+    component: CommentsEdit
   }
 ];
 

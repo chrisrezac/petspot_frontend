@@ -26,6 +26,7 @@
       Delete Post
     </button>
 
+    <!-- show comments -->
     <div v-for="comment in post.comments" v-bind:key="comment.id">
       <br />
 
@@ -33,8 +34,22 @@
         ><img v-bind:src="comment.user.image_url" width="40" height="40"
       /></router-link>
       {{ comment.user.username }}: {{ comment.body }}
+
+      <!-- edit comments -->
+      <router-link
+        v-if="isCommenter(comment)"
+        :to="`/comments/${comment.id}/edit`"
+        tag="button"
+        >Edit</router-link
+      >
+
+      <!-- delete comments -->
+      <button v-if="isCommenter(comment)" v-on:click="destroyComment()">
+        Delete Comment
+      </button>
     </div>
 
+    <!-- create new comments -->
     <div class="comments-new">
       <h1>New Comment</h1>
       <form v-on:submit.prevent="createComment()">
@@ -97,8 +112,23 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
+    destroyComment: function() {
+      if (confirm("Are you sure you want to delete this comment?")) {
+        axios.delete(`/api/comments/${this.comment.id}`).then(response => {
+          console.log(response.data);
+          this.$router.push(`/posts/${response.data.post_id}`);
+        });
+      }
+    },
     isMyPet: function() {
       if (this.$parent.getUserId() == this.post.pet.id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    isCommenter: function(comment) {
+      if (this.$parent.getUserId() == comment.user.id) {
         return true;
       } else {
         return false;

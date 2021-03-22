@@ -7,23 +7,23 @@
       </ul>
       <div class="form-group">
         <label>Name:</label>
-        <input type="text" class="form-control" v-model="name" />
+        <input type="text" class="form-control" v-model="pet.name" />
       </div>
       <div class="form-group">
         <label>Type:</label>
-        <input type="text" class="form-control" v-model="animalType" />
+        <input type="text" class="form-control" v-model="pet.animal_type" />
       </div>
       <div class="form-group">
         <label>Breed:</label>
-        <input type="text" class="form-control" v-model="breed" />
+        <input type="text" class="form-control" v-model="pet.breed" />
       </div>
       <div class="form-group">
         <label>Birthdate:</label>
-        <input type="text" class="form-control" v-model="birthday" />
+        <input type="text" class="form-control" v-model="pet.birthday" />
       </div>
       <div class="form-group">
         <label>Bio:</label>
-        <input type="text" class="form-control" v-model="bio" />
+        <input type="text" class="form-control" v-model="pet.bio" />
       </div>
       <div class="form-group">
         <label>Image:</label>
@@ -53,12 +53,12 @@ export default {
   methods: {
     updatePet: function() {
       var params = {
-        name: this.name,
-        animal_type: this.animalType,
-        breed: this.breed,
-        birthday: this.birthday,
-        bio: this.bio,
-        image_url: this.imageUrl
+        name: this.pet.name,
+        animal_type: this.pet.animal_type,
+        breed: this.pet.breed,
+        birthday: this.pet.birthday,
+        bio: this.pet.bio,
+        image_url: this.pet.imageUrl
       };
       axios
         .patch(`/api/pets/${this.pet.id}`, params)

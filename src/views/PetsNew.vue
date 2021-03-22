@@ -18,7 +18,7 @@
         <input type="text" class="form-control" v-model="breed" />
       </div>
       <div class="form-group">
-        <label>Birthday:</label>
+        <label>Birthday (year-month-day):</label>
         <input type="text" class="form-control" v-model="birthday" />
       </div>
       <div class="form-group">
