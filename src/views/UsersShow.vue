@@ -32,7 +32,6 @@
                   <router-link
                     v-if="isCurrentUser()"
                     :to="`/users/${user.id}/edit`"
-                    tag="button"
                     class="btn btn-primary-soft"
                     >Edit</router-link
                   >
@@ -98,6 +97,7 @@
               <hr class="card-meta-divider" />
 
               <!-- Buttons on Profile Card -->
+
               <div class="container">
                 <div class="row align-items-center">
                   <div class="col">

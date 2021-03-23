@@ -23,7 +23,7 @@
           </a>
           <!-- Image -->
           <a class="card-img-top" href="#!">
-            <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
+            <img v-bind:src="pet.image_url" alt="..." class="img-fluid"  />
           </a>
 
           <!-- Shape -->
@@ -57,7 +57,7 @@
                     to="/pets"
                     tag="button"
                     class="btn btn-primary-soft"
-                    >Go Back to Pets
+                    >See All Pets
                   </router-link>
                 </div>
 
@@ -141,7 +141,6 @@
         <input type="submit" class="btn btn-primary" value="Create" />
       </form>
     </div>
-    <p>Owner of Pet: {{ pet.user.username }}</p>
   </div>
 </template>
 
