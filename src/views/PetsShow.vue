@@ -1,34 +1,123 @@
 <template>
+  <!-- Display Pet Show Page -->
   <div class="pets-show">
-    
-    <h1>{{ pet.name }}</h1>
-    <img
-      v-bind:src="pet.image_url"
-      v-bind:alt="pet.name"
-      width="500"
-      height="500"
-    />
-    <p>Type: {{ pet.animal_type }}</p>
-    <p>Breed: {{ pet.breed }}</p>
-    <p>Age: {{ relativeDate(pet.birthday) }}</p>
-    <p>Bio: {{ pet.bio }}</p>
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-4 d-flex">
+        <!-- Card -->
+        <div class="card mb-6 mb-xl-0 shadow-light-lg">
+          <a class="card-body" href="#!">
+            <!-- User Avatar Icon -->
+            <div class="row justify-content-start">
+              <div class="avatar-lg">
+                <router-link :to="`/users/${pet.user.id}`"
+                  ><img
+                    v-bind:src="pet.user.image_url"
+                    alt="..."
+                    class="avatar-img rounded-circle"
+                  />
+                </router-link>
+              </div>
+            </div>
+            <!-- Pet Name -->
+            <h1>{{ pet.name }}</h1>
+          </a>
+          <!-- Image -->
+          <a class="card-img-top" href="#!">
+            <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
+          </a>
 
-    <router-link to="/pets" tag="button">Go Back to Pets</router-link>
+          <!-- Shape -->
+          <div class="position-relative">
+            <div class="shape shape-fluid-x shape-bottom text-white"></div>
+          </div>
 
-    <router-link v-if="isMyPet()" :to="`/pets/${pet.id}/edit`" tag="button"
-      >Edit</router-link
-    >
+          <!-- Meta -->
+          <a class="card-meta" href="#!">
+            <!-- Divider -->
+            <hr class="card-meta-divider" />
 
-    <button v-if="isMyPet()" v-on:click="destroyPet(currentPet)">
-      Delete Pet
-    </button>
+            <!-- Buttons on Profile Card -->
 
+            <h3>{{ pet.bio }}</h3>
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col">
+                  <!-- Edit Button -->
+                  <router-link
+                    v-if="isMyPet()"
+                    :to="`/pets/${pet.id}/edit`"
+                    tag="button"
+                    class="btn btn-primary-soft"
+                    >Edit</router-link
+                  >
+                </div>
+                <div class="col">
+                  <!-- Go Back to Pets Button -->
+                  <router-link
+                    to="/pets"
+                    tag="button"
+                    class="btn btn-primary-soft"
+                    >Go Back to Pets
+                  </router-link>
+                </div>
+
+                <div class="col">
+                  <!-- Delete Button -->
+                  <button
+                    class="btn btn-primary-soft"
+                    v-if="isMyPet()"
+                    v-on:click="destroyPet()"
+                  >
+                    Delete Pet
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display Pet Posts -->
+
+    <h1>{{ `${pet.name}` + "'s" + " Posts" }}</h1>
     <div v-for="post in pet.posts" v-bind:key="post.id">
-      <h2>{{ post.title }}</h2>
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-4 d-flex">
+          <!-- Card -->
+          <div class="card mb-6 mb-xl-0 shadow-light-lg">
+            <a class="card-body" href="#!">
+              <h2>{{ post.title }}</h2>
 
-      <router-link :to="`/posts/${post.id}`" tag="button"
-        ><img v-bind:src="post.image_url" width="500" height="500"
-      /></router-link>
+              <div class="row justify-content-start"></div>
+            </a>
+            <!-- Image -->
+            <a class="card-img-top" href="#!">
+              <router-link :to="`/posts/${post.id}`"
+                ><img v-bind:src="post.image_url" alt="..." class="img-fluid"
+              /></router-link>
+            </a>
+            <!-- View Post -->
+            <router-link
+              :to="`/posts/${post.id}`"
+              tag="button"
+              class="btn btn-primary-soft"
+              >View Post
+            </router-link>
+
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-fluid-x shape-bottom text-white"></div>
+            </div>
+
+            <!-- Meta -->
+            <a class="card-meta" href="#!">
+              <!-- Divider -->
+              <hr class="card-meta-divider" />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div v-if="isMyPet()" class="posts-new">
@@ -53,9 +142,6 @@
       </form>
     </div>
     <p>Owner of Pet: {{ pet.user.username }}</p>
-    <router-link :to="`/users/${pet.user.id}`" tag="button"
-      ><img v-bind:src="pet.user.image_url" width="40" height="40" />
-    </router-link>
   </div>
 </template>
 
