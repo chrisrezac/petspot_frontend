@@ -1,22 +1,45 @@
 <template>
   <div class="login">
-    <form v-on:submit.prevent="submit()">
-      <h1>Login</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors" v-bind:key="error">
-          {{ error }}
-        </li>
-      </ul>
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="email" class="form-control" v-model="email" />
+    <div class="card shadow-light-lg">
+      <!-- Shape -->
+      <div class="position-relative">
+        <div class="shape shape-bottom shape-fluid-x svg-shim text-white"></div>
       </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="password" class="form-control" v-model="password" />
+
+      <!-- Body -->
+      <div class="card-body">
+        <!-- Form -->
+        <form v-on:submit.prevent="submit()">
+          <li class="text-danger" v-for="error in errors" v-bind:key="error">
+            {{ error }}
+          </li>
+          <div class="form-label-group">
+            <input
+              type="email"
+              class="form-control form-control-flush"
+              id="cardEmail"
+              v-model="email"
+            />
+            <label for="cardEmail">Email</label>
+          </div>
+          <div class="form-label-group">
+            <input
+              type="password"
+              class="form-control form-control-flush"
+              id="cardPassword"
+              v-model="password"
+            />
+            <label for="cardPassword">Password</label>
+          </div>
+
+          <div class="mt-6">
+            <button class="btn btn-primary" type="submit">
+              Log In
+            </button>
+          </div>
+        </form>
       </div>
-      <input type="submit" class="btn btn-primary" value="Submit" />
-    </form>
+    </div>
   </div>
 </template>
 

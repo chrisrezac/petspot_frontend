@@ -1,4 +1,5 @@
 <template>
+
   <div class="pets-index">
     <div>Search: <input type="text" v-model="filter" /></div>
     <div>

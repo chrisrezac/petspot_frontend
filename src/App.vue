@@ -82,7 +82,7 @@
                 </router-link>
               </a>
             </li>
-
+            <!-- All Pets Page -->
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -95,6 +95,7 @@
                 <router-link to="/pets">All Pets</router-link>
               </a>
             </li>
+            <!-- All Posts Page -->
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -116,22 +117,19 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
+                <router-link v-if="loggedIn()" :to="`/users/${getUserId()}`"
+                  >| My Profile</router-link
+                >
               </a>
             </li>
           </ul>
 
-          <!-- Button -->
-          <a class="navbar-btn btn btn-sm btn-primary lift ml-auto">
-            <router-link
-              v-if="loggedIn()"
-              :to="`/users/${getUserId()}`"
-            ></router-link
-            >My Profile
-          </a>
+          <!-- My Profile Page -->
+          <a class="navbar-btn btn btn-sm btn-primary lift ml-auto"> </a>
         </div>
       </div>
     </nav>
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home | </router-link>
       <router-link v-if="!loggedIn()" to="/signup">Sign Up | </router-link>
       <router-link v-if="!loggedIn()" to="/login">Login | </router-link>
@@ -141,7 +139,7 @@
       <router-link v-if="loggedIn()" :to="`/users/${getUserId()}`"
         >| My Profile</router-link
       >
-    </div>
+    </div> -->
 
     <router-view />
   </div>
