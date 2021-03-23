@@ -1,5 +1,6 @@
 <template>
   <div class="pets-show">
+    
     <h1>{{ pet.name }}</h1>
     <img
       v-bind:src="pet.image_url"

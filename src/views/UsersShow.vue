@@ -1,28 +1,122 @@
 <template>
+  <!-- Display User Show Page -->
   <div class="users-show">
-    <h1>{{ user.username }}</h1>
-    <img v-bind:src="user.image_url" width="500" height="500" />
-    <br />
-    <router-link to="/pets" tag="button">Go Back to Pets </router-link>
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-4 d-flex">
+        <!-- Card -->
+        <div class="card mb-6 mb-xl-0 shadow-light-lg">
+          <a class="card-body" href="#!">
+            <!-- Username -->
+            <h1>{{ user.username }}</h1>
+          </a>
+          <!-- Image -->
+          <a class="card-img-top" href="#!">
+            <img v-bind:src="user.image_url" alt="..." class="img-fluid" />
+          </a>
 
-    <router-link
-      v-if="isCurrentUser()"
-      :to="`/users/${user.id}/edit`"
-      tag="button"
-      >Edit</router-link
-    >
+          <!-- Shape -->
+          <div class="position-relative">
+            <div class="shape shape-fluid-x shape-bottom text-white"></div>
+          </div>
 
-    <button v-if="isCurrentUser()" v-on:click="destroyUser(currentUser)">
-      Delete User
-    </button>
-    <br />
-    <br />
+          <!-- Meta -->
+          <a class="card-meta" href="#!">
+            <!-- Divider -->
+            <hr class="card-meta-divider" />
+
+            <!-- Buttons on Profile Card -->
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col">
+                  <!-- Edit Button -->
+                  <router-link
+                    v-if="isCurrentUser()"
+                    :to="`/users/${user.id}/edit`"
+                    tag="button"
+                    class="btn btn-primary-soft"
+                    >Edit</router-link
+                  >
+                </div>
+
+                <div class="col">
+                  <!-- Go Back to Pets Button -->
+                  <router-link
+                    to="/pets"
+                    tag="button"
+                    class="btn btn-primary-soft"
+                    >Go Back to Pets
+                  </router-link>
+                </div>
+                <div class="col">
+                  <!-- Delete Button -->
+                  <button
+                    class="btn btn-primary-soft"
+                    v-if="isCurrentUser()"
+                    v-on:click="destroyUser(currentUser)"
+                  >
+                    Delete User
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display User's Pets -->
+
     <h1>{{ `${user.username}` + "'s" + " " + "Pets" }}</h1>
+
     <div v-for="pet in user.pets" v-bind:key="pet.id">
-      <h2>{{ pet.name }}</h2>
-      <router-link :to="`/pets/${pet.id}`"
-        ><img v-bind:src="pet.image_url" width="500" height="500"
-      /></router-link>
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-4 d-flex">
+          <!-- Card -->
+          <div class="card mb-6 mb-xl-0 shadow-light-lg">
+            <a class="card-body" href="#!">
+              <!-- Pet Name -->
+              <h2>{{ pet.name }}</h2>
+              <div class="card card-border card-border-lg border-primary">
+                <div class="card-body"></div>
+              </div>
+            </a>
+            <!-- Image -->
+            <a class="card-img-top" href="#!">
+              <router-link :to="`/pets/${pet.id}`"
+                ><img v-bind:src="pet.image_url" alt="..." class="img-fluid"
+              /></router-link>
+            </a>
+
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-fluid-x shape-bottom text-white"></div>
+            </div>
+
+            <!-- Meta -->
+            <a class="card-meta" href="#!">
+              <!-- Divider -->
+              <hr class="card-meta-divider" />
+
+              <!-- Buttons on Profile Card -->
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="col">
+                      <!-- View Pet -->
+                      <router-link
+                        :to="`/pets/${pet.id}`"
+                        tag="button"
+                        class="btn btn-primary-soft"
+                        >View Pet
+                      </router-link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div v-if="isCurrentUser()" class="pets-new">

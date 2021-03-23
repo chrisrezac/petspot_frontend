@@ -129,6 +129,11 @@
         </div>
       </div>
     </nav>
+
+    <!-- blue bar at top of every page -->
+    <div class="card card-border card-border-lg border-primary">
+      <div class="card-body"></div>
+    </div>
     <!-- <div id="nav">
       <router-link to="/">Home | </router-link>
       <router-link v-if="!loggedIn()" to="/signup">Sign Up | </router-link>
