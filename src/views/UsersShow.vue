@@ -7,7 +7,7 @@
         <div class="card mb-6 mb-xl-0 shadow-light-lg">
           <a class="card-body" href="#!">
             <!-- Username -->
-            <h1 class="display-1 font-weight-bold">{{ user.username }}</h1>
+            <h3 class="display-4 font-weight-bold">{{ user.username }}</h3>
           </a>
           <!-- Image -->
           <a class="card-img-top" href="#!">

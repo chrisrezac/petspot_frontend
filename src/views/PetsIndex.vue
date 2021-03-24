@@ -1,52 +1,111 @@
 <template>
   <div class="pets-index">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8 text-center">
-          <!-- Heading -->
-          <h1 class="display-1 font-weight-bold">
-            All Pets
-          </h1>
-
-          <!-- Text -->
-          <p class="lead text-secondary mb-4">
-            The one spot stop and see all those who run, swim, slither, and hop!
-          </p>
-          <button
-            v-on:click="sortAttribute = 'animal_type'"
-            class="btn btn-primary-soft"
-          >
-            Sort by Animal Type
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- Beginning of Loop Through Pets -->
-    <div
-      v-for="pet in orderBy(filterBy(pets, filter), sortAttribute)"
-      v-bind:key="pet.id"
-    >
+    <!-- WELCOME
+    ================================================== -->
+    <section class="pt-8 pb-12">
       <div class="container">
-        <div
-          class="row justify-content-center"
-          id="portfolio"
-          data-isotope='{"layoutMode": "masonry"}'
-        >
-          <div class="col-12 col-md-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+            <!-- Headin -->
+            <h1 class="display-1 font-weight-bold">
+              Cute Pets.
+            </h1>
 
-            <!-- Sizes Card -->
-            <div class="card-header">
-              <!-- Heading -->
-              <h3 class="mb-1 font-weight-bold">{{ pet.name }}</h3>
-              <!-- Card Border -->
-              <div class="card card-border card-border-lg border-primary"></div>
-            </div>
-            <!-- Clickable Images of Pets -->
-            <router-link :to="`/pets/${pet.id}`"
-              ><img v-bind:src="pet.image_url" class="img-fluid"
-            /></router-link>
+            <!-- Text -->
+            <p class="lead text-secondary mb-4">
+              Click on the buttons below to filter animals by type
+            </p>
+
+            <!-- Badges -->
+            <nav class="nav justify-content-center">
+              <a
+                v-on:click="filter = 'Dog'"
+                class="badge badge-pill badge-secondary-soft active mr-1 mb-1"
+              >
+                <span class="h6 text-uppercase">Dogs</span>
+              </a>
+              <a
+                v-on:click="filter = 'Cat'"
+                class="badge badge-pill badge-secondary-soft mr-1 mb-1 active"
+              >
+                <span class="h6 text-uppercase">Cats</span>
+              </a>
+              <a
+                v-on:click="filter = 'Birds'"
+                class="badge badge-pill badge-secondary-soft mr-1 mb-1 active"
+              >
+                <span class="h6 text-uppercase">Birds</span>
+              </a>
+              <a
+                v-on:click="filter = ''"
+                class="badge badge-pill badge-secondary-soft mr-1 mb-1 active"
+              >
+                <span class="h6 text-uppercase">All</span>
+              </a>
+            </nav>
           </div>
         </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+    <!-- CONTENT
+    ================================================== -->
+    <section class="py-8 py-md-11 mt-n10 mt-md-n14">
+      <div class="container">
+        <div
+          class="row"
+          id="portfolio"
+          data-isotope='{"layoutMode": "fitRows"}'
+        >
+          <div
+            class="col-12 col-md-4 product"
+            v-for="pet in orderBy(
+              filterBy(pets, filter, 'animal_type'),
+              sortAttribute
+            )"
+            v-bind:key="pet.id"
+          >
+            <!-- Card -->
+            <router-link class="card card-flush mb-7" :to="`/pets/${pet.id}`">
+              <!-- Image -->
+              <div class="card-zoom">
+                <img
+                  class="card-img-top rounded shadow-light-lg"
+                  v-bind:src="pet.image_url"
+                  alt="..."
+                />
+              </div>
+
+              <!-- Footer -->
+              <div class="card-footer">
+                <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">{{ pet.breed }}</h6>
+
+                <!-- Heading -->
+                <h4 class="mb-0">{{ pet.name }}</h4>
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHAPE
+    ================================================== -->
+    <div class="position-relative">
+      <div class="shape shape-bottom shape-fluid-x svg-shim text-gray-200">
+        <svg
+          viewBox="0 0 2880 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
     </div>
   </div>

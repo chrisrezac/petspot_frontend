@@ -1,149 +1,71 @@
 <template>
   <div id="app">
+    <!-- NAVBAR
+    ================================================== -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand" href="/">
-          <img
-            src="/assets/img/photos/logo.gif"
-            class="navbar-brand-img"
-            alt="..."
-          />
-        </a>
+        <router-link class="navbar-brand" to="/pets">
+          <img src="/assets/img/photos/logo.gif" class="navbar-brand-img" alt="...">
+        </router-link>
 
         <!-- Toggler -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
+
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fe fe-x"></i>
+          </button>
+
           <!-- Navigation -->
           <ul class="navbar-nav ml-auto">
-            <!-- Home Page -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarLandings"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link to="/">Home</router-link>
-              </a>
+            <li class="nav-item">
+              <router-link to="/" class="nav-link">
+                Home
+              </router-link>
             </li>
-            <!-- Signup Page -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarPages"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link v-if="!loggedIn()" to="/signup"
-                  >Sign Up</router-link
-                >
-              </a>
-              <!-- Login Page -->
+            <li class="nav-item">
+              <router-link to="/posts" class="nav-link">
+                Posts
+              </router-link>
             </li>
-
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarPages"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link v-if="!loggedIn()" to="/Login">Login</router-link>
-              </a>
+            <li class="nav-item">
+              <router-link to="/pets" class="nav-link">
+                Pets
+              </router-link>
             </li>
-
-            <!-- Logout Page -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarPages"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link v-if="loggedIn()" to="/logout"
-                  >Logout
-                </router-link>
-              </a>
+            <li v-if="loggedIn()" class="nav-item">
+              <router-link to="/logout" class="nav-link">
+                Logout
+              </router-link>
             </li>
-            <!-- All Pets Page -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarPages"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link to="/pets">All Pets</router-link>
-              </a>
+           
+            <li v-if="!loggedIn()" class="nav-item">
+              <router-link to="/login" class="nav-link">
+                Login
+              </router-link>
             </li>
-            <!-- All Posts Page -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarPages"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link to="/posts">All Posts</router-link>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarPages"
-                data-toggle="dropdown"
-                href="#"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <router-link v-if="loggedIn()" :to="`/users/${getUserId()}`"
-                  >| My Profile</router-link
-                >
-              </a>
-            </li>
+            
           </ul>
 
-          <!-- My Profile Page -->
-          <a class="navbar-btn btn btn-sm btn-primary lift ml-auto">
-            <router-link
-              v-if="loggedIn()"
-              :to="`/users/${getUserId()}`"
-            ></router-link
-            >My Profile</a
-          >
+          <!-- Button -->
+          <router-link v-if="loggedIn()" class="navbar-btn btn btn-sm btn-primary lift ml-auto" :to="`/users/${getUserId()}`">
+            My Profile
+          </router-link>
+          <router-link v-else class="navbar-btn btn btn-sm btn-primary lift ml-auto" to="/signup">
+            Signup
+          </router-link>
+
         </div>
+
       </div>
     </nav>
-
-    <!-- blue bar at top of every page -->
-    <div class="card card-border card-border-lg border-primary">
-      <div class="card-body"></div>
-    </div>
+  
 
     <router-view />
   </div>
@@ -175,12 +97,12 @@
 <script>
 export default {
   methods: {
-    loggedIn: function() {
+    loggedIn: function () {
       return localStorage.jwt ? true : false;
     },
-    getUserId: function() {
+    getUserId: function () {
       return localStorage.getItem("userId");
-    }
-  }
+    },
+  },
 };
 </script>
