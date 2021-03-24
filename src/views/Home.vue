@@ -1,6 +1,12 @@
 <template>
-  <div class="home">
-    <h1>{{ message }}</h1>
+  <div class="logo">
+    <a class="navbar-brand" href="/index.html">
+      <img
+        src="/assets/img/photos/logo.gif"
+        class="navbar-brand-img"
+        alt="..."
+      />
+    </a>
   </div>
 </template>
 
@@ -9,9 +15,7 @@
 <script>
 export default {
   data: function() {
-    return {
-      message: "PetSpot"
-    };
+    return {};
   },
   created: function() {},
   methods: {}

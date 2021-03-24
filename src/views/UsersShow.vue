@@ -7,7 +7,7 @@
         <div class="card mb-6 mb-xl-0 shadow-light-lg">
           <a class="card-body" href="#!">
             <!-- Username -->
-            <h1>{{ user.username }}</h1>
+            <h1 class="display-1 font-weight-bold">{{ user.username }}</h1>
           </a>
           <!-- Image -->
           <a class="card-img-top" href="#!">
@@ -65,7 +65,8 @@
 
     <!-- Display User's Pets -->
 
-    <h1>{{ `${user.username}` + "'s" + " " + "Pets" }}</h1>
+    <!-- <h1>{{ `${user.username}` + "'s" + " " + "Pets" }}</h1> -->
+    <br />
 
     <div v-for="pet in user.pets" v-bind:key="pet.id">
       <div class="row justify-content-center">
@@ -117,6 +118,7 @@
           </div>
         </div>
       </div>
+      <br />
     </div>
 
     <div v-if="isCurrentUser()" class="pets-new">

@@ -137,8 +137,8 @@
           </div>
         </div>
       </div>
-    </div>
-
+      </div>
+    
     <!-- create new comments -->
     <br />
     <br />

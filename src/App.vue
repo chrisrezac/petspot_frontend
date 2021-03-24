@@ -3,8 +3,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand" href="/index.html">
-          <img src="/assets/img/brand.svg" class="navbar-brand-img" alt="..." />
+        <a class="navbar-brand" href="/">
+          <img
+            src="/assets/img/photos/logo.gif"
+            class="navbar-brand-img"
+            alt="..."
+          />
         </a>
 
         <!-- Toggler -->

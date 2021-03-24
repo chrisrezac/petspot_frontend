@@ -1,21 +1,53 @@
 <template>
-
   <div class="pets-index">
-    <div>Search: <input type="text" v-model="filter" /></div>
-    <div>
-      <button v-on:click="sortAttribute = 'animal_type'">
-        Sort by Animal Type
-      </button>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+          <!-- Heading -->
+          <h1 class="display-1 font-weight-bold">
+            All Pets
+          </h1>
+
+          <!-- Text -->
+          <p class="lead text-secondary mb-4">
+            The one spot to stop and see all those who run, swim, slither, and
+            hop!
+          </p>
+          <button
+            v-on:click="sortAttribute = 'animal_type'"
+            class="btn btn-primary-soft"
+          >
+            Sort by Animal Type
+          </button>
+        </div>
+      </div>
     </div>
-    <h1>All Pets</h1>
+    <!-- Items -->
     <div
       v-for="pet in orderBy(filterBy(pets, filter), sortAttribute)"
       v-bind:key="pet.id"
     >
-      <h2>{{ pet.name }}</h2>
-      <router-link :to="`/pets/${pet.id}`"
-        ><img v-bind:src="pet.image_url" width="500" height="500"
-      /></router-link>
+      <div class="container">
+        <div
+          class="row"
+          id="portfolio"
+          data-isotope='{"layoutMode": "masonry"}'
+        >
+          <div class="col-12 col-md-4">
+            <!-- Image -->
+
+            <!-- Footer -->
+            <div class="card-header">
+              <!-- Heading -->
+              <h3 class="mb-1 font-weight-bold">{{ pet.name }}</h3>
+              <div class="card card-border card-border-lg border-primary"></div>
+            </div>
+            <router-link :to="`/pets/${pet.id}`"
+              ><img v-bind:src="pet.image_url" class="img-fluid"
+            /></router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

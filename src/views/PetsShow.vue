@@ -19,11 +19,11 @@
               </div>
             </div>
             <!-- Pet Name -->
-            <h1>{{ pet.name }}</h1>
+            <h1 class="display-2 font-weight-bold">{{ pet.name }}</h1>
           </a>
           <!-- Image -->
           <a class="card-img-top" href="#!">
-            <img v-bind:src="pet.image_url" alt="..." class="img-fluid"  />
+            <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
           </a>
 
           <!-- Shape -->
@@ -79,15 +79,14 @@
     </div>
 
     <!-- Display Pet Posts -->
-
-    <h1>{{ `${pet.name}` + "'s" + " Posts" }}</h1>
+<br>
     <div v-for="post in pet.posts" v-bind:key="post.id">
       <div class="row justify-content-center">
         <div class="col-12 col-xl-4 d-flex">
           <!-- Card -->
           <div class="card mb-6 mb-xl-0 shadow-light-lg">
             <a class="card-body" href="#!">
-              <h2>{{ post.title }}</h2>
+              <h3 class="display-1 font-weight-bold">{{ post.title }}</h3>
 
               <div class="row justify-content-start"></div>
             </a>
