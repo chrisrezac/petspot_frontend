@@ -1,7 +1,6 @@
 <template>
   <div class="posts-index">
-
- <!-- WELCOME
+    <!-- WELCOME
     ================================================== -->
     <section class="pt-8 pb-12">
       <div class="container">
@@ -14,11 +13,11 @@
 
             <!-- Text -->
             <p class="lead text-secondary mb-4">
-              Click on the buttons below to filter posts
+              Check out their adventures!
             </p>
 
             <!-- Badges -->
-            <nav class="nav justify-content-center">
+            <!-- <nav class="nav justify-content-center">
               <a
                 v-on:click="filter = 'Dog'"
                 class="badge badge-pill badge-secondary-soft active mr-1 mb-1"
@@ -43,7 +42,7 @@
               >
                 <span class="h6 text-uppercase">All</span>
               </a>
-            </nav>
+            </nav> -->
           </div>
         </div>
         <!-- / .row -->
@@ -51,7 +50,7 @@
       <!-- / .container -->
     </section>
 
-       <!-- CONTENT
+    <!-- CONTENT
     ================================================== -->
     <section class="py-8 py-md-11 mt-n10 mt-md-n14">
       <div class="container">
@@ -62,7 +61,8 @@
         >
           <div
             class="col-12 col-md-4 product"
-            v-for="post in posts" v-bind:key="post.id"
+            v-for="post in posts"
+            v-bind:key="post.id"
           >
             <!-- Card -->
             <router-link class="card card-flush mb-7" :to="`/posts/${post.id}`">

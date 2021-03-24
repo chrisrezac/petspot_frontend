@@ -1,13 +1,48 @@
 <template>
   <!-- Display Post Show Page -->
   <div class="posts-show">
-    <div class="row justify-content-center">
-      <div class="col-12 col-xl-4 d-flex">
-        <!-- Card -->
-        <div class="card mb-6 mb-xl-0 shadow-light-lg">
-          <a class="card-body" href="#!">
-            <div class="row justify-content-start">
-              <div class="avatar-lg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-5 col-md-12 col-lg-5 d-flex">
+          <!-- Card -->
+          <div class="card mb-6 mb-lg-1 shadow-light-lg">
+            <!-- Image -->
+            <div class="card-img-top">
+              <img class="card-img-top" v-bind:src="post.image_url" alt="..." />
+            </div>
+
+            <!-- Shape -->
+            <div class="position-relative">
+              <div class="shape shape-fluid-x shape-bottom svg-shim text-white">
+                <svg
+                  viewBox="0 0 2880 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Body -->
+            <a class="card-body" href="#!">
+              <!-- Heading -->
+              <h3>{{ post.title }}</h3>
+
+              <!-- Text -->
+              <p class="mb-0 text-muted">{{ post.body }}</p>
+            </a>
+
+            <!-- Meta -->
+            <a class="card-meta" href="#!">
+              <!-- Divider -->
+              <hr class="card-meta-divider" />
+
+              <!-- Avatar -->
+              <div class="avatar avatar-sm mr-2">
                 <router-link :to="`/pets/${post.pet.id}`"
                   ><img
                     v-bind:src="post.pet.image_url"
@@ -16,61 +51,33 @@
                   />
                 </router-link>
               </div>
-            </div>
-            <h1 class="display-2 font-weight-bold">{{ post.title }}</h1>
-          </a>
 
-          <!-- Image -->
-          <a class="card-img-top" href="#!">
-            <img v-bind:src="post.image_url" alt="..." class="img-fluid" />
-          </a>
+              <!-- Author -->
+              <h6 class="text-uppercase text-muted mr-2 mb-0">
+                {{ post.pet.name }}
+              </h6>
 
-          <!-- Shape -->
-          <div class="position-relative">
-            <div class="shape shape-fluid-x shape-bottom text-white"></div>
-          </div>
-
-          <!-- Meta -->
-          <a class="card-meta" href="#!">
-            <!-- Divider -->
-            <hr class="card-meta-divider" />
-
-            <!-- Buttons on Post Card -->
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col">
-                  <!-- Edit Button -->
+              <!-- Edit/Delete Buttons -->
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button>
                   <router-link
                     v-if="isMyPet()"
                     :to="`/posts/${post.id}/edit`"
-                    tag="button"
-                    class="btn btn-primary-soft"
+                    class="btn btn-link"
                     >Edit</router-link
                   >
-                </div>
-                <div class="col">
-                  <!-- Go Back to Posts Button -->
-                  <router-link
-                    to="/posts"
-                    tag="button"
-                    class="btn btn-primary-soft"
-                    >See All Posts
-                  </router-link>
-                </div>
-
-                <div class="col">
-                  <!-- Delete Button -->
-                  <button
-                    v-if="isMyPet()"
-                    v-on:click="destroyPost(currentPost)"
-                    class="btn btn-primary-soft"
-                  >
-                    Delete Post
-                  </button>
-                </div>
+                </button>
+                <button
+                  v-if="isMyPet()"
+                  v-on:click="destroyPost(currentPost)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  Delete Post
+                </button>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -87,14 +94,6 @@
             <a class="card-body" href="#!">
               <div class="card-body"></div>
 
-              <div class="avatar-lg">
-                <router-link :to="`/users/${comment.user.id}`"
-                  ><img
-                    v-bind:src="comment.user.image_url"
-                    alt="..."
-                    class="avatar-img rounded-circle"
-                /></router-link>
-              </div>
               {{ comment.user.username }}: {{ comment.body }}
               <div class="row justify-content-start"></div>
             </a>

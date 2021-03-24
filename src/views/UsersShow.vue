@@ -1,6 +1,81 @@
 <template>
   <!-- Display User Show Page -->
   <div class="users-show">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div
+          class="col-12 col-md-4 position-md-sticky d-flex align-items-center vh-md-100"
+          style="top: 0;"
+        >
+          <!-- Sidebar -->
+          <aside class="py-8 py-md-10">
+            <!-- Brand -->
+            <div>
+              <img v-bind:src="user.image_url" alt="..." class="img-fluid" />
+            </div>
+
+            <!-- Text -->
+            <p class="font-size-lg mb-7 text-muted">
+              {{ user.username }}
+            </p>
+
+            <!-- List group -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <!-- Heading -->
+                <router-link
+                  v-if="isCurrentUser()"
+                  :to="`/users/${user.id}/edit`"
+                  class="btn btn-primary-soft"
+                  >Edit</router-link
+                >
+              </li>
+              <li class="list-group-item">
+                <!-- Heading -->
+                <!-- Delete Button -->
+                <button
+                  class="btn btn-primary-soft"
+                  v-if="isCurrentUser()"
+                  v-on:click="destroyUser(currentUser)"
+                >
+                  Delete User
+                </button>
+              </li>
+              <li class="list-group-item">
+                <!-- Heading -->
+
+                <router-link
+                  to="/pets/new"
+                  tag="button"
+                  class="btn btn-primary-soft"
+                  >Create Pet
+                </router-link>
+              </li>
+            </ul>
+          </aside>
+        </div>
+        <div class="col-12 col-md-7">
+          <!-- Images -->
+          <section
+            v-for="pet in user.pets"
+            v-bind:key="pet.id"
+            class="pb-8 pt-md-12 pb-md-10"
+          >
+            <h1>{{ pet.name }}</h1>
+            <router-link
+              class="d-block"
+              data-fancybox
+              data-width="840"
+              data-heigt="1000"
+              :to="`/pets/${pet.id}`"
+            >
+              <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
+            </router-link>
+          </section>
+        </div>
+      </div>
+    </div>
+
     <div class="row justify-content-center">
       <div class="col-12 col-xl-4 d-flex">
         <!-- Card -->
@@ -39,23 +114,8 @@
 
                 <div class="col">
                   <!-- Go Back to Pets Button -->
-                  <router-link
-                    to="/pets"
-                    tag="button"
-                    class="btn btn-primary-soft"
-                    >Go Back to Pets
-                  </router-link>
                 </div>
-                <div class="col">
-                  <!-- Delete Button -->
-                  <button
-                    class="btn btn-primary-soft"
-                    v-if="isCurrentUser()"
-                    v-on:click="destroyUser(currentUser)"
-                  >
-                    Delete User
-                  </button>
-                </div>
+                <div class="col"></div>
               </div>
             </div>
           </a>
