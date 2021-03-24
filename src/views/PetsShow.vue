@@ -79,7 +79,7 @@
     </div>
 
     <!-- Display Pet Posts -->
-<br>
+    <br />
     <div v-for="post in pet.posts" v-bind:key="post.id">
       <div class="row justify-content-center">
         <div class="col-12 col-xl-4 d-flex">

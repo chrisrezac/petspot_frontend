@@ -1,11 +1,46 @@
 <template>
   <div class="posts-index">
-    <h1>All Posts</h1>
-    <div v-for="post in posts" v-bind:key="post.id">
-      <h2>{{ post.title }}</h2>
-      <router-link :to="`/posts/${post.id}`"
-        ><img v-bind:src="post.image_url" width="500" height="500"
-      /></router-link>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+          <!-- Heading -->
+          <h1 class="display-1 font-weight-bold">
+            All Posts
+          </h1>
+
+          <!-- Text -->
+          <p class="lead text-secondary mb-4">
+            See all of their favorite moments!
+          </p>
+
+          <div v-for="post in posts" v-bind:key="post.id"
+          >
+            <div class="container">
+              <div
+                class="row justify-content-center"
+                id="portfolio"
+                data-isotope='{"layoutMode": "masonry"}'
+              >
+                <div class="col-12 col-md-4">
+                  <!-- Sizes Card -->
+                  <div class="card-header">
+                    <!-- Heading -->
+                    <h3 class="mb-1 font-weight-bold">{{ post.title }}</h3>
+                    <!-- Card Border -->
+                    <div
+                      class="card card-border card-border-lg border-primary"
+                    ></div>
+                  </div>
+                  <!-- Clickable Images of Pets -->
+                  <router-link :to="`/posts/${post.id}`"
+                    ><img v-bind:src="post.image_url" class="img-fluid"
+                  /></router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

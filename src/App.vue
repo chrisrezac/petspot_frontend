@@ -129,7 +129,13 @@
           </ul>
 
           <!-- My Profile Page -->
-          <a class="navbar-btn btn btn-sm btn-primary lift ml-auto"> </a>
+          <a class="navbar-btn btn btn-sm btn-primary lift ml-auto">
+            <router-link
+              v-if="loggedIn()"
+              :to="`/users/${getUserId()}`"
+            ></router-link
+            >My Profile</a
+          >
         </div>
       </div>
     </nav>
@@ -138,17 +144,6 @@
     <div class="card card-border card-border-lg border-primary">
       <div class="card-body"></div>
     </div>
-    <!-- <div id="nav">
-      <router-link to="/">Home | </router-link>
-      <router-link v-if="!loggedIn()" to="/signup">Sign Up | </router-link>
-      <router-link v-if="!loggedIn()" to="/login">Login | </router-link>
-      <router-link v-if="loggedIn()" to="/logout">Logout | </router-link>
-      <router-link to="/pets">All Pets | </router-link>
-      <router-link to="/posts">All Posts </router-link>
-      <router-link v-if="loggedIn()" :to="`/users/${getUserId()}`"
-        >| My Profile</router-link
-      >
-    </div> -->
 
     <router-view />
   </div>

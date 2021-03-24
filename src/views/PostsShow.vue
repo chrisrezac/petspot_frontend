@@ -1,24 +1,25 @@
 <template>
+  <!-- Display Post Show Page -->
   <div class="posts-show">
-    <!-- Post Title and Pet Name -->
-    <h2>{{ post.title }}</h2>
-    <h3>by</h3>
-    <h2>{{ `${post.pet.name}` }}</h2>
-
     <div class="row justify-content-center">
-      <div class="avatar-lg">
-        <router-link :to="`/pets/${post.pet.id}`"
-          ><img
-            v-bind:src="post.pet.image_url"
-            alt="..."
-            class="avatar-img rounded-circle"
-          />
-        </router-link>
-      </div>
       <div class="col-12 col-xl-4 d-flex">
         <!-- Card -->
         <div class="card mb-6 mb-xl-0 shadow-light-lg">
-          <a class="card-body" href="#!"> </a>
+          <a class="card-body" href="#!">
+            <div class="row justify-content-start">
+              <div class="avatar-lg">
+                <router-link :to="`/pets/${post.pet.id}`"
+                  ><img
+                    v-bind:src="post.pet.image_url"
+                    alt="..."
+                    class="avatar-img rounded-circle"
+                  />
+                </router-link>
+              </div>
+            </div>
+            <h1 class="display-2 font-weight-bold">{{ post.title }}</h1>
+          </a>
+
           <!-- Image -->
           <a class="card-img-top" href="#!">
             <img v-bind:src="post.image_url" alt="..." class="img-fluid" />
@@ -137,8 +138,8 @@
           </div>
         </div>
       </div>
-      </div>
-    
+    </div>
+
     <!-- create new comments -->
     <br />
     <br />

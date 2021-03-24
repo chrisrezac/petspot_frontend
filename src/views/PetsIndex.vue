@@ -10,8 +10,7 @@
 
           <!-- Text -->
           <p class="lead text-secondary mb-4">
-            The one spot to stop and see all those who run, swim, slither, and
-            hop!
+            The one spot stop and see all those who run, swim, slither, and hop!
           </p>
           <button
             v-on:click="sortAttribute = 'animal_type'"
@@ -22,26 +21,27 @@
         </div>
       </div>
     </div>
-    <!-- Items -->
+    <!-- Beginning of Loop Through Pets -->
     <div
       v-for="pet in orderBy(filterBy(pets, filter), sortAttribute)"
       v-bind:key="pet.id"
     >
       <div class="container">
         <div
-          class="row"
+          class="row justify-content-center"
           id="portfolio"
           data-isotope='{"layoutMode": "masonry"}'
         >
           <div class="col-12 col-md-4">
-            <!-- Image -->
 
-            <!-- Footer -->
+            <!-- Sizes Card -->
             <div class="card-header">
               <!-- Heading -->
               <h3 class="mb-1 font-weight-bold">{{ pet.name }}</h3>
+              <!-- Card Border -->
               <div class="card card-border card-border-lg border-primary"></div>
             </div>
+            <!-- Clickable Images of Pets -->
             <router-link :to="`/pets/${pet.id}`"
               ><img v-bind:src="pet.image_url" class="img-fluid"
             /></router-link>

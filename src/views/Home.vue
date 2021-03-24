@@ -1,11 +1,12 @@
 <template>
-  <div class="logo">
-    <a class="navbar-brand" href="/index.html">
-      <img
-        src="/assets/img/photos/logo.gif"
-        class="navbar-brand-img"
-        alt="..."
-      />
+  <div>
+    <a
+      href="/assets/img/photos/logo.gif"
+      data-fancybox
+      data-width="1400"
+      data-height="900"
+    >
+      <img src="/assets/img/photos/logo.gif" class="img-fluid" alt="..." />
     </a>
   </div>
 </template>
