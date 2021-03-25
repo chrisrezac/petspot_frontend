@@ -6,26 +6,45 @@
       <div class="container">
         <!-- Brand -->
         <router-link class="navbar-brand" to="/pets">
-          <img src="/assets/img/photos/logo.gif" class="navbar-brand-img" alt="...">
+          <img
+            src="/assets/img/photos/logo.gif"
+            class="navbar-brand-img"
+            alt="..."
+          />
         </router-link>
 
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
-
           <!-- Toggler -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <i class="fe fe-x"></i>
           </button>
 
           <!-- Navigation -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link to="/" class="nav-link">
+              <router-link to="/pets" class="nav-link">
                 Home
               </router-link>
             </li>
@@ -44,28 +63,32 @@
                 Logout
               </router-link>
             </li>
-           
+
             <li v-if="!loggedIn()" class="nav-item">
               <router-link to="/login" class="nav-link">
                 Login
               </router-link>
             </li>
-            
           </ul>
 
           <!-- Button -->
-          <router-link v-if="loggedIn()" class="navbar-btn btn btn-sm btn-primary lift ml-auto" :to="`/users/${getUserId()}`">
+          <router-link
+            v-if="loggedIn()"
+            class="navbar-btn btn btn-sm btn-primary lift ml-auto"
+            :to="`/users/${getUserId()}`"
+          >
             My Profile
           </router-link>
-          <router-link v-else class="navbar-btn btn btn-sm btn-primary lift ml-auto" to="/signup">
+          <router-link
+            v-else
+            class="navbar-btn btn btn-sm btn-primary lift ml-auto"
+            to="/signup"
+          >
             Signup
           </router-link>
-
         </div>
-
       </div>
     </nav>
-  
 
     <router-view />
   </div>
@@ -97,12 +120,12 @@
 <script>
 export default {
   methods: {
-    loggedIn: function () {
+    loggedIn: function() {
       return localStorage.jwt ? true : false;
     },
-    getUserId: function () {
+    getUserId: function() {
       return localStorage.getItem("userId");
-    },
-  },
+    }
+  }
 };
 </script>

@@ -1,219 +1,125 @@
 <template>
   <!-- Display User Show Page -->
   <div class="users-show">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div
-          class="col-12 col-md-4 position-md-sticky d-flex align-items-center vh-md-100"
-          style="top: 0;"
-        >
-          <!-- Sidebar -->
-          <aside class="py-8 py-md-10">
-            <!-- Brand -->
-            <div>
-              <img v-bind:src="user.image_url" alt="..." class="img-fluid" />
-            </div>
-
-            <!-- Text -->
-            <p class="font-size-lg mb-7 text-muted">
-              {{ user.username }}
-            </p>
-
-            <!-- List group -->
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <!-- Heading -->
-                <router-link
-                  v-if="isCurrentUser()"
-                  :to="`/users/${user.id}/edit`"
-                  class="btn btn-primary-soft"
-                  >Edit</router-link
-                >
-              </li>
-              <li class="list-group-item">
-                <!-- Heading -->
-                <!-- Delete Button -->
-                <button
-                  class="btn btn-primary-soft"
-                  v-if="isCurrentUser()"
-                  v-on:click="destroyUser(currentUser)"
-                >
-                  Delete User
-                </button>
-              </li>
-              <li class="list-group-item">
-                <!-- Heading -->
-
-                <router-link
-                  to="/pets/new"
-                  tag="button"
-                  class="btn btn-primary-soft"
-                  >Create Pet
-                </router-link>
-              </li>
-            </ul>
-          </aside>
-        </div>
-        <div class="col-12 col-md-7">
-          <!-- Images -->
-          <section
-            v-for="pet in user.pets"
-            v-bind:key="pet.id"
-            class="pb-8 pt-md-12 pb-md-10"
-          >
-            <h1>{{ pet.name }}</h1>
-            <router-link
-              class="d-block"
-              data-fancybox
-              data-width="840"
-              data-heigt="1000"
-              :to="`/pets/${pet.id}`"
-            >
-              <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
-            </router-link>
-          </section>
-        </div>
-      </div>
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-12 col-xl-4 d-flex">
-        <!-- Card -->
-        <div class="card mb-6 mb-xl-0 shadow-light-lg">
-          <a class="card-body" href="#!">
-            <!-- Username -->
-            <h3 class="display-4 font-weight-bold">{{ user.username }}</h3>
-          </a>
-          <!-- Image -->
-          <a class="card-img-top" href="#!">
-            <img v-bind:src="user.image_url" alt="..." class="img-fluid" />
-          </a>
-
-          <!-- Shape -->
-          <div class="position-relative">
-            <div class="shape shape-fluid-x shape-bottom text-white"></div>
+    <!-- HEADER
+    ================================================== -->
+    <header class="bg-dark pt-9 pb-11 d-none d-md-block">
+      <div class="container-md">
+        <div class="row align-items-center">
+          <div class="col">
+            <!-- Heading -->
+            <h1 class="font-weight-bold text-white mb-2">
+              {{ user.username + "'s " + "Account" }}
+            </h1>
           </div>
-
-          <!-- Meta -->
-          <a class="card-meta" href="#!">
-            <!-- Divider -->
-            <hr class="card-meta-divider" />
-
-            <!-- Buttons on Profile Card -->
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col">
-                  <!-- Edit Button -->
-                  <router-link
-                    v-if="isCurrentUser()"
-                    :to="`/users/${user.id}/edit`"
-                    class="btn btn-primary-soft"
-                    >Edit</router-link
-                  >
-                </div>
-
-                <div class="col">
-                  <!-- Go Back to Pets Button -->
-                </div>
-                <div class="col"></div>
-              </div>
+          <div class="col-auto">
+            <!-- Button -->
+            <div class="avatar avatar-xl">
+              <img
+                class="avatar-img rounded-circle"
+                :src="user.image_url"
+                alt="..."
+              />
             </div>
-          </a>
+          </div>
         </div>
+        <!-- / .row -->
       </div>
-    </div>
+      <!-- / .container -->
+    </header>
 
-    <!-- Display User's Pets -->
-
-    <!-- <h1>{{ `${user.username}` + "'s" + " " + "Pets" }}</h1> -->
-    <br />
-
-    <div v-for="pet in user.pets" v-bind:key="pet.id">
-      <div class="row justify-content-center">
-        <div class="col-12 col-xl-4 d-flex">
-          <!-- Card -->
-          <div class="card mb-6 mb-xl-0 shadow-light-lg">
-            <a class="card-body" href="#!">
-              <!-- Pet Name -->
-              <h2>{{ pet.name }}</h2>
-              <div class="card card-border card-border-lg border-primary">
-                <div class="card-body"></div>
-              </div>
-            </a>
-            <!-- Image -->
-            <a class="card-img-top" href="#!">
-              <router-link :to="`/pets/${pet.id}`"
-                ><img v-bind:src="pet.image_url" alt="..." class="img-fluid"
-              /></router-link>
-            </a>
-
-            <!-- Shape -->
-            <div class="position-relative">
-              <div class="shape shape-fluid-x shape-bottom text-white"></div>
+    <!-- MAIN
+    ================================================== -->
+    <main class="pb-8 pb-md-11 mt-md-n6">
+      <div class="container-md">
+        <div class="row">
+          <div class="col-12 col-md-3">
+            <!-- Card -->
+            <div
+              class="card card-bleed border-bottom border-bottom-md-0 shadow-light-lg"
+            >
+              <!-- Collapse -->
+              <div class="collapse d-md-block" id="sidenavCollapse"></div>
             </div>
-
-            <!-- Meta -->
-            <a class="card-meta" href="#!">
-              <!-- Divider -->
-              <hr class="card-meta-divider" />
-
-              <!-- Buttons on Profile Card -->
-
-              <div class="container">
+          </div>
+          <div class="col-12 col-md-9">
+            <!-- Card -->
+            <div class="card card-bleed shadow-light-lg">
+              <div class="card-header">
                 <div class="row align-items-center">
                   <div class="col">
-                    <div class="col">
-                      <!-- View Pet -->
-                      <router-link
-                        :to="`/pets/${pet.id}`"
-                        tag="button"
-                        class="btn btn-primary-soft"
-                        >View Pet
-                      </router-link>
+                    <!-- Heading -->
+                    <h4 class="mb-0">
+                      Your Pets
+                    </h4>
+                  </div>
+                  <div class="col-auto">
+                    <!-- Button -->
+                    <router-link
+                      v-if="isCurrentUser()"
+                      to="/pets/new"
+                      tag="button"
+                      class="btn btn-primary-soft"
+                      >Create New Pet</router-link
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <!-- List group -->
+                <div
+                  v-for="pet in user.pets"
+                  v-bind:key="pet.id"
+                  class="list-group list-group-flush"
+                >
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xl">
+                          <router-link :to="`/pets/${pet.id}`">
+                            <img
+                              class="avatar-img rounded-circle"
+                              :src="pet.image_url"
+                              alt="..."
+                            />
+                          </router-link>
+                        </div>
+                      </div>
+                      <div class="col-6 ml-n5">
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          {{ pet.name }}
+                        </p>
+                      </div>
+                      <div v-if="isCurrentUser()" class="col-auto ml-auto">
+                        <router-link :to="`/pets/${pet.id}/edit`"
+                          >Edit</router-link
+                        >
+                      </div>
+                      <button
+                        class="btn btn-danger-soft"
+                        v-if="isCurrentUser()"
+                        v-on:click="destroyPet()"
+                      >
+                        Delete Pet
+                      </button>
+                    </div>
+                  </div>
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      <div class="col-auto"></div>
                     </div>
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
+        <!-- / .row -->
       </div>
-      <br />
-    </div>
-
-    <div v-if="isCurrentUser()" class="pets-new">
-      <h1>New Pet</h1>
-      <form v-on:submit.prevent="createPet()">
-        <ul>
-          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-        </ul>
-        <div class="form-group">
-          <label>Name:</label>
-          <input type="text" class="form-control" v-model="name" />
-        </div>
-        <div class="form-group">
-          <label>Type:</label>
-          <input type="text" class="form-control" v-model="animalType" />
-        </div>
-        <div class="form-group">
-          <label>Breed:</label>
-          <input type="text" class="form-control" v-model="breed" />
-        </div>
-        <div class="form-group">
-          <label>Birthday:</label>
-          <input type="text" class="form-control" v-model="birthday" />
-        </div>
-        <div class="form-group">
-          <label>Bio:</label>
-          <input type="text" class="form-control" v-model="bio" />
-        </div>
-        <div class="form-group">
-          <label>Image:</label>
-          <input type="text" class="form-control" v-model="imageUrl" />
-        </div>
-        <input type="submit" class="btn btn-primary" value="Create" />
-      </form>
-    </div>
+      <!-- / .container -->
+    </main>
   </div>
 </template>
 
@@ -245,30 +151,17 @@ export default {
       if (confirm("Are you sure you want to delete this user?")) {
         axios.delete(`/api/users/${this.user.id}`).then(response => {
           console.log(response.data);
-          this.$router.push("/users");
+          this.$router.push(`"/users/${this.user.id}"`);
         });
       }
     },
-    createPet: function() {
-      var params = {
-        name: this.name,
-        animal_type: this.animalType,
-        breed: this.breed,
-        birthday: this.birthday,
-        bio: this.bio,
-        image_url: this.imageUrl
-      };
-      axios
-        .post("/api/pets", params)
-        .then(response => {
-          console.log("pets create", response);
-          this.user.pets.push(response.data);
-          console.log(this.user.pets);
-        })
-        .catch(error => {
-          console.log("pets create error", error.response);
-          this.errors = error.response.data.errors;
+    destroyPet: function() {
+      if (confirm("Are you sure you want to delete this pet?")) {
+        axios.delete(`/api/pets/10`).then(response => {
+          console.log(response.data);
+          this.$router.push(`/pets`)
         });
+      }
     },
     isCurrentUser: function() {
       if (this.$parent.getUserId() == this.user.id) {

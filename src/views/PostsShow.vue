@@ -37,113 +37,109 @@
             </a>
 
             <!-- Meta -->
-            <a class="card-meta" href="#!">
-              <!-- Divider -->
-              <hr class="card-meta-divider" />
 
-              <!-- Avatar -->
-              <div class="avatar avatar-sm mr-2">
-                <router-link :to="`/pets/${post.pet.id}`"
-                  ><img
-                    v-bind:src="post.pet.image_url"
-                    alt="..."
-                    class="avatar-img rounded-circle"
-                  />
-                </router-link>
-              </div>
+            <!-- Divider -->
+            <hr class="card-meta-divider" />
+            <h6 class="text-lowercase text-muted mr-2 mb-0">
+              by
+            </h6>
+            <h6 class="text-uppercase text-muted mr-2 mb-0">
+              {{ post.pet.name }}
+            </h6>
 
-              <!-- Author -->
-              <h6 class="text-uppercase text-muted mr-2 mb-0">
-                {{ post.pet.name }}
-              </h6>
-
-              <!-- Edit/Delete Buttons -->
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button>
-                  <router-link
-                    v-if="isMyPet()"
-                    :to="`/posts/${post.id}/edit`"
-                    class="btn btn-link"
-                    >Edit</router-link
-                  >
-                </button>
-                <button
-                  v-if="isMyPet()"
-                  v-on:click="destroyPost(currentPost)"
-                  type="button"
-                  class="btn btn-danger"
-                >
-                  Delete Post
-                </button>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Display Comments on Post-->
-
-    <div v-for="comment in post.comments" v-bind:key="comment.id">
-      <div class="row justify-content-center">
-        <div class="col-12 col-xl-4 d-flex">
-          <!-- Comments Card -->
-          <div class="card mb-6 mb-xl-0 shadow-light-sml">
-            <!-- Commenter Avatar Icon -->
-
-            <a class="card-body" href="#!">
-              <div class="card-body"></div>
-
-              {{ comment.user.username }}: {{ comment.body }}
-              <div class="row justify-content-start"></div>
-            </a>
-
-            <!-- Shape -->
-            <div class="position-relative">
-              <div class="shape shape-fluid-x shape-bottom text-white"></div>
+            <!-- Avatar -->
+            <div class="avatar avatar-sm mr-2">
+              <router-link :to="`/pets/${post.pet.id}`"
+                ><img
+                  v-bind:src="post.pet.image_url"
+                  alt="..."
+                  class="avatar-img rounded-circle"
+                />
+              </router-link>
             </div>
 
-            <!-- Meta -->
-            <a class="card-meta" href="#!">
-              <!-- Divider -->
-              <hr class="card-meta-divider" />
-              <div class="card card-border border-primary"></div>
-              <!-- Buttons on Comment Cards -->
-              <div class="container">
-                <div class="row align-items-center">
-                  <div class="col">
-                    <!-- Edit Button -->
-                    <router-link
-                      v-if="isCommenter(comment)"
-                      :to="`/comments/${comment.id}/edit`"
-                      class="btn btn-primary-soft"
-                      >Edit</router-link
-                    >
-                  </div>
+            <!-- Author -->
 
-                  <div class="col">
-                    <!-- Delete Button -->
-                    <button
-                      v-if="isCommenter(comment)"
-                      v-on:click="destroyComment()"
-                      class="btn btn-danger-soft"
-                    >
-                      Delete Comment
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </a>
+            <!-- Edit/Delete Buttons -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button v-if="isMyPet()">
+                <router-link :to="`/posts/${post.id}/edit`" class="btn btn-link"
+                  >Edit</router-link
+                >
+              </button>
+              <button
+                v-if="isMyPet()"
+                v-on:click="destroyPost(currentPost)"
+                type="button"
+                class="btn btn-danger"
+              >
+                Delete Post
+              </button>
+              <button
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#exampleModalLong"
+              >
+                View Comments
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- create new comments -->
-    <br />
-    <br />
-    <br />
-    <br />
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalLong"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Comments</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div
+            v-for="comment in post.comments"
+            v-bind:key="comment.id"
+            class="modal-body"
+          >
+            <div class="avatar avatar-xl">
+              <router-link :to="`/users/${comment.user.id}`">
+                <img
+                  class="avatar-img rounded-circle"
+                  :src="comment.user.image_url"
+                  data-dismiss="modal"
+                  alt="..."
+                />
+              </router-link>
+            </div>
+            {{ comment.user.username }}: {{ comment.body }}
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="comments-new">
       <h1>New Comment</h1>
       <form v-on:submit.prevent="createComment()">

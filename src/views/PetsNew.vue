@@ -41,6 +41,7 @@ export default {
   data: function() {
     return {
       name: "",
+      pet: "",
       animalType: "",
       breed: "",
       birthday: "",
@@ -64,7 +65,7 @@ export default {
         .post("/api/pets", params)
         .then(response => {
           console.log("pets create", response);
-          this.$router.push("/pets");
+          this.$router.push(`/users/1`);
         })
         .catch(error => {
           console.log("pets create error", error.response);

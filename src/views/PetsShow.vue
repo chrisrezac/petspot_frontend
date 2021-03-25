@@ -1,120 +1,86 @@
 <template>
   <!-- Display Pet Show Page -->
   <div class="pets-show">
-    <div class="row justify-content-center">
-      <div class="col-12 col-xl-4 d-flex">
-        <!-- Card -->
-        <div class="card mb-6 mb-xl-0 shadow-light-lg">
-          <a class="card-body" href="#!">
-            <!-- User Avatar Icon -->
-            <div class="row justify-content-start">
-              <div class="avatar-lg">
-                <router-link :to="`/users/${pet.user.id}`"
-                  ><img
-                    v-bind:src="pet.user.image_url"
-                    alt="..."
-                    class="avatar-img rounded-circle"
-                  />
-                </router-link>
-              </div>
+    <div class="container">
+      <div class="row justify-content-between">
+        <div
+          class="col-12 col-md-4 position-md-sticky d-flex align-items-center vh-md-100"
+          style="top: 0;"
+        >
+          <!-- Sidebar -->
+          <aside class="py-8 py-md-10">
+            <!-- Brand -->
+            <br />
+            <br />
+            <br />
+
+            <br />
+            <br />
+            <br />
+
+            <br />
+            <h1>{{ pet.name }}</h1>
+            <br />
+            <br />
+            <div>
+              <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
             </div>
-            <!-- Pet Name -->
-            <h1 class="display-2 font-weight-bold">{{ pet.name }}</h1>
-          </a>
-          <!-- Image -->
-          <a class="card-img-top" href="#!">
-            <img v-bind:src="pet.image_url" alt="..." class="img-fluid" />
-          </a>
 
-          <!-- Shape -->
-          <div class="position-relative">
-            <div class="shape shape-fluid-x shape-bottom text-white"></div>
-          </div>
+            <!-- Text -->
+            <p class="font-size-lg mb-2 text-bold">
+              {{ pet.breed }}
+            </p>
+            <p class="font-size-lg mb-2 text-bold">
+              {{ relativeDate(pet.birthday) }}
+            </p>
+            <p class="font-size-lg mb-2 text-bold">
+              {{ pet.bio }}
+            </p>
 
-          <!-- Meta -->
-          <a class="card-meta" href="#!">
-            <!-- Divider -->
-            <hr class="card-meta-divider" />
-
-            <!-- Buttons on Profile Card -->
-
-            <h3>{{ pet.bio }}</h3>
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col">
-                  <!-- Edit Button -->
-                  <router-link
-                    v-if="isMyPet()"
-                    :to="`/pets/${pet.id}/edit`"
-                    tag="button"
-                    class="btn btn-primary-soft"
-                    >Edit</router-link
-                  >
-                </div>
-                <div class="col">
-                  <!-- Go Back to Pets Button -->
-                  <router-link
-                    to="/pets"
-                    tag="button"
-                    class="btn btn-primary-soft"
-                    >See All Pets
-                  </router-link>
-                </div>
-
-                <div class="col">
-                  <!-- Delete Button -->
-                  <button
-                    class="btn btn-primary-soft"
-                    v-if="isMyPet()"
-                    v-on:click="destroyPet()"
-                  >
-                    Delete Pet
-                  </button>
-                </div>
-              </div>
-            </div>
-          </a>
+            <!-- List group -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <!-- Heading -->
+                <router-link
+                  v-if="isMyPet()"
+                  :to="`/pets/${pet.id}/edit`"
+                  class="btn btn-primary-soft"
+                  >Edit</router-link
+                >
+              </li>
+              <li class="list-group-item">
+                <!-- Heading -->
+                <!-- Delete Button -->
+                <button
+                  class="btn btn-danger-soft"
+                  v-if="isMyPet()"
+                  v-on:click="destroyPet()"
+                >
+                  Delete Pet
+                </button>
+              </li>
+            </ul>
+          </aside>
         </div>
-      </div>
-    </div>
 
-    <!-- Display Pet Posts -->
-    <br />
-    <div v-for="post in pet.posts" v-bind:key="post.id">
-      <div class="row justify-content-center">
-        <div class="col-12 col-xl-4 d-flex">
-          <!-- Card -->
-          <div class="card mb-6 mb-xl-0 shadow-light-lg">
-            <a class="card-body" href="#!">
-              <h3 class="display-1 font-weight-bold">{{ post.title }}</h3>
-
-              <div class="row justify-content-start"></div>
-            </a>
-            <!-- Image -->
-            <a class="card-img-top" href="#!">
-              <router-link :to="`/posts/${post.id}`"
-                ><img v-bind:src="post.image_url" alt="..." class="img-fluid"
-              /></router-link>
-            </a>
-            <!-- View Post -->
+        <div class="col-12 col-md-7">
+          <!-- Images -->
+          <section
+            v-for="post in pet.posts"
+            v-bind:key="post.id"
+            class="pb-8 pt-md-12 pb-md-10"
+          >
+            <h1>{{ post.name }}</h1>
             <router-link
+              class="d-block"
+              data-fancybox
+              data-width="840"
+              data-heigt="1000"
               :to="`/posts/${post.id}`"
-              tag="button"
-              class="btn btn-primary-soft"
-              >View Post
+            >
+              <img v-bind:src="post.image_url" alt="..." class="img-fluid" />
             </router-link>
-
-            <!-- Shape -->
-            <div class="position-relative">
-              <div class="shape shape-fluid-x shape-bottom text-white"></div>
-            </div>
-
-            <!-- Meta -->
-            <a class="card-meta" href="#!">
-              <!-- Divider -->
-              <hr class="card-meta-divider" />
-            </a>
-          </div>
+          </section>
         </div>
       </div>
     </div>
@@ -172,7 +138,7 @@ export default {
       if (confirm("Are you sure you want to delete this pet?")) {
         axios.delete(`/api/pets/${this.pet.id}`).then(response => {
           console.log(response.data);
-          this.$router.push("/pets");
+          this.$router.push(`/users/1`);
         });
       }
     },

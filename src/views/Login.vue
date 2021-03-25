@@ -148,7 +148,7 @@ export default {
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("userId", response.data.user_id);
-          this.$router.push("/");
+          this.$router.push("/pets");
         })
         .catch(error => {
           console.log(error.response);

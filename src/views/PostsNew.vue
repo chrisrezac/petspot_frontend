@@ -17,10 +17,6 @@
         <label>ImageUrl:</label>
         <input type="text" class="form-control" v-model="image_url" />
       </div>
-      <div class="form-group">
-        <label>Pet_ID:</label>
-        <input type="text" class="form-control" v-model="pet_id" />
-      </div>
       <input type="submit" class="btn btn-primary" value="Create" />
     </form>
   </div>
@@ -52,7 +48,8 @@ export default {
         .post("/api/posts", params)
         .then(response => {
           console.log("posts create", response);
-          this.$router.push("/posts");
+          this.pet.posts.push(response.data);
+          console.log(this.pet.posts);
         })
         .catch(error => {
           console.log("posts create error", error.response);
