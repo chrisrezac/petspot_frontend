@@ -65,7 +65,7 @@ export default {
         .post("/api/pets", params)
         .then(response => {
           console.log("pets create", response);
-          this.$router.push(`/users/1`);
+          this.$router.push(`/pets`);
         })
         .catch(error => {
           console.log("pets create error", error.response);

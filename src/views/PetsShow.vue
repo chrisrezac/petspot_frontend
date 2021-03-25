@@ -59,6 +59,17 @@
                   Delete Pet
                 </button>
               </li>
+              <li class="list-group-item">
+                <div class="avatar avatar-sm mr-2">
+                  <router-link :to="`/users/${pet.user.id}`"
+                    ><img
+                      v-bind:src="pet.user.image_url"
+                      alt="..."
+                      class="avatar-img rounded-circle"
+                    />
+                  </router-link>
+                </div>
+              </li>
             </ul>
           </aside>
         </div>
