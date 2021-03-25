@@ -49,9 +49,7 @@
                 <div class="row align-items-center">
                   <div class="col">
                     <!-- Heading -->
-                    <h4 class="mb-0">
-                      Your Pets
-                    </h4>
+                    <h4 class="mb-0">{{ user.username + "'s " }} Pets</h4>
                   </div>
                   <div class="col-auto">
                     <!-- Button -->
@@ -157,9 +155,9 @@ export default {
     },
     destroyPet: function() {
       if (confirm("Are you sure you want to delete this pet?")) {
-        axios.delete(`/api/pets/10`).then(response => {
+        axios.delete(`/api/pets/16`).then(response => {
           console.log(response.data);
-          this.$router.push(`/pets`)
+          this.$router.push(`/pets`);
         });
       }
     },

@@ -8,7 +8,7 @@
           <div class="col-12 col-md-10 col-lg-8 text-center">
             <!-- Headin -->
             <h1 class="display-1 font-weight-bold">
-              Cute Pets.
+              Meet the Pets.
             </h1>
 
             <!-- Text -->
@@ -31,7 +31,7 @@
                 <span class="h6 text-uppercase">Cats</span>
               </a>
               <a
-                v-on:click="filter = 'Birds'"
+                v-on:click="filter = 'Bird'"
                 class="badge badge-pill badge-secondary-soft mr-1 mb-1 active"
               >
                 <span class="h6 text-uppercase">Birds</span>
